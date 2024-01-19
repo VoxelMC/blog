@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostPreview from '../../components/PostPreview.astro';
+
+export async function getStaticPaths(): Promise<any> {
+	const allPosts = await Astro.glob('../posts/*');
+
+	const uniqueTags = [
+		...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat()),
+	];
+
+	return uniqueTags.map((tag: any) => {
+		const filteredPosts = allPosts.filter((post: any) =>
+			post.frontmatter.tags.includes(tag)
+		);
+		return {
+			params: { tag },
+			props: { posts: filteredPosts },
+		};
+	});
+}
+
+const { tag } = Astro.params;
+const { posts }: { posts: any } = Astro.props;
+---
+
+<Base meta={{ title: 'Posts tagged with ' + tag }}>
+	<h2
+		class="text-3xl font-medium tracking-wide text-accentColor w500:text-lg"
+	>
+		Posts tagged with <a href="/tags/"
+			class="text-lightModeText underline dark:text-darkModeText">#{tag}</a
+		>
+	</h2>
+	<a href="/" class="text-sm mb-10 underline">Back to posts</a>
+	<div class="mt-10">
+		{
+			posts.map((post: any) => (
+				<PostPreview
+					url={post.url}
+					title={post.frontmatter.title}
+					description={post.frontmatter.description}
+					pubDate={post.frontmatter.pubDate}
+				/>
+			))
+		}
+	</div>
+</Base>

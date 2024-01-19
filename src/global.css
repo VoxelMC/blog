@@ -1,0 +1,37 @@
+mark {
+	@apply bg-accentColor;
+}
+
+a:has(.anchor-link) {
+	@apply no-underline;
+}
+
+a:not(:has(i)) {
+	@apply !text-accentColor hover:!text-white;
+}
+
+.anchor-link {
+	@apply my-auto text-accentColor !no-underline opacity-0;
+}
+
+:is(h1, h2, h3, h4, h5, h6):has(a > .anchor-link):hover .anchor-link {
+	@apply opacity-100;
+}
+
+/* @media (prefers-reduced-motion: reduce) { */
+/* 	:global(html) { */
+/* 		scroll-behavior: auto; */
+/* 	} */
+/* } */
+/**/
+/* :global(html) { */
+/* 	scroll-behavior: smooth; */
+/* } */
+
+.task-list-item input {
+	@apply my-0 mr-2;
+}
+
+.task-list-item {
+	list-style-type: none;
+}

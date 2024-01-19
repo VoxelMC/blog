@@ -1,0 +1,50 @@
+---
+import config from '../config';
+import BaseHead from '../components/BaseHead.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+import 'remixicon/fonts/remixicon.css';
+
+import '@fontsource/sora/400.css';
+import '@fontsource/sora/500.css';
+import '@fontsource/sora/700.css';
+import type { PostFrontmatter } from '../content/config';
+
+export interface Props {
+	frontmatter?: PostFrontmatter;
+	title?: string;
+}
+const { frontmatter, title } = Astro.props;
+---
+
+<html lang={config.lang}>
+	<head>
+		<BaseHead {frontmatter} title={title} />
+		<script>
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				console.log(anchor, anchor.getAttribute('href'));
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+
+					(document as Document)
+						.querySelector(anchor.getAttribute('href') as string)
+						.scrollIntoView({
+							behavior: 'smooth',
+						});
+				});
+			});
+		</script>
+	</head>
+	<body
+		class="mx-auto max-w-[900px] bg-lightModeBg px-5 text-lightModeText scrollbar scrollbar-thumb-accentColor dark:bg-darkModeBg dark:text-darkModeText"
+	>
+		<Nav />
+		<main
+			class="min-h-[calc(100dvh-90px-70px)] py-10 w500:min-h-[calc(100dvh-110px-70px)]"
+		>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

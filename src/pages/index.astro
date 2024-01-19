@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import PostPreview from '../components/PostPreview.astro';
+import config from '../config';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+// const allPosts = await Astro.glob('./posts/*')
+allPosts.sort(
+    (a, b) =>
+        new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+---
+
+<Base title='Home'>
+    {
+        allPosts.map(post => (
+            <PostPreview
+                url={'/posts/' + post.slug}
+                title={post.data.title}
+                description={post.data.description}
+                pubDate={post.data.pubDate}
+            />
+        ))
+    }
+</Base>
