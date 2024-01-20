@@ -21,14 +21,14 @@ const { frontmatter, title } = Astro.props;
 <html lang={config.lang}>
 	<head>
 		<BaseHead {frontmatter} title={title} />
-		<script>
+		<script lang="js">
 			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 				console.log(anchor, anchor.getAttribute('href'));
 				anchor.addEventListener('click', function (e) {
 					e.preventDefault();
 
-					(document as Document)
-						.querySelector(anchor.getAttribute('href') as string)
+					document 
+						.querySelector(anchor.getAttribute('href'))
 						.scrollIntoView({
 							behavior: 'smooth',
 						});
