@@ -40,7 +40,8 @@ const { frontmatter, title } = Astro.props;
 		<SpeedInsights />
 	</head>
 	<body
-		class="mx-auto max-w-[860px] bg-lightModeBg overflow-y-hidden scrollbar scrollbar-thumb-accentColor dark:bg-darkModeBg dark:text-darkModeText"
+		style="padding-left: calc(100vw - 100%);"
+		class="mx-auto max-w-[860px] overflow-y-scroll bg-lightModeBg scrollbar scrollbar-thumb-accentColor dark:bg-darkModeBg dark:text-darkModeText"
 	>
 		<Nav />
 		<main
