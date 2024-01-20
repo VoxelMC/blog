@@ -11,6 +11,8 @@ import '@fontsource/sora/500.css';
 import '@fontsource/sora/700.css';
 import type { PostFrontmatter } from '../content/config';
 
+import SpeedInsights from '@vercel/speed-insights/astro';
+
 export interface Props {
 	frontmatter?: PostFrontmatter;
 	title?: string;
@@ -20,6 +22,7 @@ const { frontmatter, title } = Astro.props;
 
 <html lang={config.lang}>
 	<head>
+		<SpeedInsights />
 		<BaseHead {frontmatter} title={title} />
 		<script lang="js">
 			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -27,7 +30,7 @@ const { frontmatter, title } = Astro.props;
 				anchor.addEventListener('click', function (e) {
 					e.preventDefault();
 
-					document 
+					document
 						.querySelector(anchor.getAttribute('href'))
 						.scrollIntoView({
 							behavior: 'smooth',

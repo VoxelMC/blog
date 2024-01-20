@@ -15,6 +15,7 @@
     "@astrojs/mdx": "^2.0.5",
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource/sora": "^5.0.16",
+    "@vercel/speed-insights": "^1.0.5",
     "astro": "^4.2.1",
     "astro-expressive-code": "^0.31.0",
     "astro-meta-tags": "^0.2.1",
