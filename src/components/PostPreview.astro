@@ -7,7 +7,6 @@ export interface Props {
 	tags: string[];
 }
 const { url, title, description, pubDate, tags } = Astro.props;
-console.log(tags);
 const prettyTitle = title
 	.toLowerCase()
 	.replaceAll(' ', 'abcda')

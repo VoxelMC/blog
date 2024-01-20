@@ -14,7 +14,6 @@ export async function getStaticPaths(): Promise<any> {
 		const filteredPosts = allPosts.filter((post) =>
 			post.data.tags.includes(tag)
 		);
-		console.log(filteredPosts)
 		return {
 			params: { tag },
 			props: { posts: filteredPosts },
