@@ -22,7 +22,6 @@ const { frontmatter, title } = Astro.props;
 
 <html lang={config.lang}>
 	<head>
-		<SpeedInsights />
 		<BaseHead {frontmatter} title={title} />
 		<script lang="js">
 			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -38,6 +37,7 @@ const { frontmatter, title } = Astro.props;
 				});
 			});
 		</script>
+		<SpeedInsights />
 	</head>
 	<body
 		class="mx-auto max-w-[900px] bg-lightModeBg px-5 text-lightModeText scrollbar scrollbar-thumb-accentColor dark:bg-darkModeBg dark:text-darkModeText"
