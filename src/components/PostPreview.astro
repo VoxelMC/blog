@@ -5,21 +5,25 @@ export interface Props {
 	description: string;
 	pubDate: string;
 	tags: string[];
+	dev?: boolean;
 }
-const { url, title, description, pubDate, tags } = Astro.props;
+const { url, title, description, pubDate, tags, dev } = Astro.props;
 const prettyTitle = title
 	.toLowerCase()
 	.replaceAll(' ', 'abcda')
 	.replaceAll(/[^a-z]+/g, '')
 	.replaceAll('abcda', '-');
+const parsedDate = new Date(pubDate);
+const month = parsedDate.toLocaleString('default', { month: 'long' });
+const year = parsedDate.getFullYear();
 ---
 
-<div id={prettyTitle} class="mb-[60px] flex flex-row last:mb-0">
+<div id={prettyTitle} class={`mb-10 preview-card time-${month}-${year} flex flex-row last:mb-0`} data-time={`${month}-${year}`}>
 	<div class="-ml-5 mr-4 w-1 bg-accentColor"></div>
 	<div class="">
 		<div class="w-max">
 			<a class="group text-accentColor duration-200" href={url}>
-				<h2 class="text-2xl font-medium w500:text-lg">{title}</h2>
+				<h2 class="text-2xl font-medium w500:text-lg">{title} {dev && <div class="inline align-super text-sm text-darkModeText font-mono bg-blue-500 p-1 rounded">Dev</div>}</h2>
 				<span
 					class="relative bottom-0.5 block h-0.5 max-w-0 bg-accentColor transition-all duration-300 group-hover:max-w-full"
 				></span>

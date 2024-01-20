@@ -2,24 +2,30 @@
 import Base from '../layouts/Base.astro';
 import PostPreview from '../components/PostPreview.astro';
 import { getCollection } from 'astro:content';
+import MonthDivider from '../components/MonthDivider.astro';
 
-const allPosts = await getCollection('posts');
+const allPosts = (await getCollection('posts')).filter(post => import.meta.env.DEV ? true : !post.data.devOnly);
 allPosts.sort(
-    (a, b) =>
-        new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+	(a, b) =>
+		new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 );
+
 ---
 
-<Base title='Home'>
-    {
-        allPosts.map(post => (
-            <PostPreview
-                url={'/posts/' + post.slug}
-                title={post.data.title}
-                description={post.data.description}
-                pubDate={post.data.pubDate}
-				tags={post.data.tags}
-            />
-        ))
-    }
+<Base title="Home">
+	{
+		allPosts.map(post => (
+			<>
+				<MonthDivider date={post.data.pubDate as string} />
+				<PostPreview
+					url={'/posts/' + post.slug}
+					title={post.data.title}
+					description={post.data.description}
+					pubDate={post.data.pubDate}
+					tags={post.data.tags}
+					dev={post.data.devOnly}
+				/>
+			</>
+		))
+	}
 </Base>

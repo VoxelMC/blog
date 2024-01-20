@@ -13,6 +13,8 @@ export interface PostFrontmatter {
     description: string;
     pubDate: string;
     tags: string[];
+	// lastOfMonth?: string | boolean;
+	devOnly?: boolean;
 }
 // 2. Define your collection(s)
 const postCollection = defineCollection({
@@ -23,6 +25,8 @@ const postCollection = defineCollection({
         description: z.string(),
         pubDate: z.string(),
         tags: z.array(z.string()),
+		// lastOfMonth: z.union([z.string(), z.boolean()]).optional()
+		devOnly: z.boolean().optional()
     }),
 });
 // 3. Export a single `collections` object to register your collection(s)

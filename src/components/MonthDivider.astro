@@ -1,0 +1,49 @@
+---
+export interface Props {
+	date: string;
+}
+const { date } = Astro.props;
+const parsedDate = new Date(date);
+const month = parsedDate.toLocaleString('default', { month: 'long' });
+const year = parsedDate.getFullYear();
+---
+
+<div
+	class={`divider-${month}-${year} hidden month-divider mb-4 flex-row items-center`}
+	data-time={`${month}-${year}`}
+>
+	<span
+		class="mr-2 w-max whitespace-nowrap text-lightModeText dark:text-darkModeText"
+	>
+		{month}
+		{year}
+	</span>
+	<div class="inline h-0.5 w-full bg-lightModeText dark:bg-darkModeText">
+	</div>
+</div>
+
+<script>
+	const el = document.getElementById('divider-styles');
+	const styleEl =
+		(el as HTMLStyleElement) ??
+		(document.createElement('style') as HTMLStyleElement);
+	styleEl.id = 'divider-styles';
+
+	// Append <style> element to <head>
+	if (!el) {
+		console.log('injected css');
+		document.head.appendChild(styleEl);
+	}
+	const dividers = document.querySelectorAll(
+		'.month-divider'
+	) as NodeListOf<HTMLElement>;
+	const styleSheet = styleEl.sheet as CSSStyleSheet;
+
+	for (const e of dividers) {
+		const time = e.dataset.time;
+		const rule = `.time-${time}:not(:has(+ .divider-${time})) + *, .divider-${time}:first-of-type { display: flex; }`;
+		styleSheet.insertRule(rule, styleSheet.cssRules.length);
+		// const rule2 = `.divider-${time}:has(+ .time-${time}) { display: ; }`;
+		// styleSheet.insertRule(rule2, styleSheet.cssRules.length);
+	}
+</script>
