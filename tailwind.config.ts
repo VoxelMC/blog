@@ -17,7 +17,8 @@ export default {
 				accentColor: '#A682FF',
 				lightModeText: 'black',
 				darkModeText: 'white',
-				codeBg: '#333333',
+				darkCodeBg: '#333333',
+				lightCodeBg: '#CCCCCC',
 			},
 			screens: {
 				w500: { max: '500px' },

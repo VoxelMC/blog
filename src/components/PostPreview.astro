@@ -4,15 +4,15 @@ export interface Props {
 	title: string;
 	description: string;
 	pubDate: string;
+	tags: string[];
 }
-const { url, title, description, pubDate } = Astro.props;
-console.log(title);
+const { url, title, description, pubDate, tags } = Astro.props;
+console.log(tags);
 const prettyTitle = title
 	.toLowerCase()
 	.replaceAll(' ', 'abcda')
 	.replaceAll(/[^a-z]+/g, '')
 	.replaceAll('abcda', '-');
-console.log(prettyTitle);
 ---
 
 <div id={prettyTitle} class="mb-[60px] flex flex-row last:mb-0">
@@ -44,7 +44,11 @@ console.log(prettyTitle);
 					transform="translate(-61 -152)"></path>
 			</svg>
 			<p class="text-sm leading-5 tracking-wide w500:text-xs">
-				{pubDate}
+				{pubDate} | {
+					tags.map(tag => (
+						<a class="hover:text-accentColor underline mr-1.5 transition-colors" href=`/tags/${tag}`>#{tag}</a>
+					))
+				}
 			</p>
 		</div>
 	</div>

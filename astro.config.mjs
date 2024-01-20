@@ -27,6 +27,7 @@ export default defineConfig({
 				{
 					behavior: 'append',
 					content: fromHtmlIsomorphic(
+
 						'<span class="ri-link-m ri-sm anchor-link" style="margin-left: 0.4rem;"></span>'
 					),
 				},

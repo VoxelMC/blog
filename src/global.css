@@ -6,8 +6,12 @@ a:has(.anchor-link) {
 	@apply no-underline;
 }
 
-a:not(:has(i)) {
-	@apply !text-accentColor hover:!text-white;
+#table-of-contents + ul > li > a {
+	@apply text-lightModeText underline dark:text-darkModeText hover:!text-accentColor !transition-colors;
+}
+
+:not(li) > a:not(:has(i)) {
+	@apply !text-accentColor hover:!text-white transition-colors;
 }
 
 .anchor-link {
