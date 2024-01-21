@@ -10,7 +10,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { frontmatter, title, slug = '/' } = Astro.props;
+const { frontmatter, title, slug = '/hello-world' } = Astro.props;
 let preformattedSlug = [...slug].reverse();
 preformattedSlug.push('/');
 let formattedSlug =
@@ -57,6 +57,7 @@ const siteDescription = frontmatter?.description ?? config.description;
 />
 <meta property="og:image:width" content="800" />
 <meta property="og:image:height" content="400" />
+<meta property="og:type" content="" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary" />
@@ -67,5 +68,5 @@ const siteDescription = frontmatter?.description ?? config.description;
 	property="twitter:image"
 	content=`https://blog.trevfox.dev/posts${formattedSlug}/og.png`
 />
-<meta property="og:image:width" content="800" />
-<meta property="og:image:height" content="400" />
+<meta property="twitter:image:width" content="800" />
+<meta property="twitter:image:height" content="400" />
