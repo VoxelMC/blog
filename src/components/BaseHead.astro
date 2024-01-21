@@ -14,9 +14,9 @@ const { frontmatter, title, slug = '/' } = Astro.props;
 let preformattedSlug = [...slug].reverse();
 preformattedSlug.push('/');
 let formattedSlug =
-	slug.startsWith('/') ? slug : preformattedSlug.reverse().join("");
+	slug.startsWith('/') ? slug : preformattedSlug.reverse().join('');
 // console.log(import.meta.env.SITE, formattedSlug)
-console.log(`${import.meta.env.SITE}/posts${formattedSlug}/og.png`)
+console.log(`${import.meta.env.SITE}/posts${formattedSlug}/og.png`);
 
 const siteTitle =
 	frontmatter ? frontmatter.title + ' | ' + config.title
@@ -60,7 +60,8 @@ const siteDescription = frontmatter?.description ?? config.description;
 <meta property="og:type" content="" />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary" />
+<!-- <meta property="twitter:card" content="summary" /> -->
+<meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={siteTitle} />
 <meta property="twitter:description" content={siteDescription} />
