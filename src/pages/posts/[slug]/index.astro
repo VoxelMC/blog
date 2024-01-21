@@ -12,6 +12,7 @@ export async function getStaticPaths() {
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+console.log(entry.slug)
 ---
 
 <BlogPost slug={entry.slug} frontmatter={entry.data}>
