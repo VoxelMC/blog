@@ -10,7 +10,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { frontmatter, title, slug = '/hello-world' } = Astro.props;
+const { frontmatter, title, slug = '/' } = Astro.props;
 let preformattedSlug = [...slug].reverse();
 preformattedSlug.push('/');
 let formattedSlug =

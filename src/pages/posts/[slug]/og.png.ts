@@ -1,5 +1,8 @@
+import fs from 'fs';
+import path from 'path';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { ImageResponse } from '@vercel/og';
+('sora-latin-500-normal.woff2');
 
 interface Props {
 	params: { slug: string };
@@ -8,6 +11,14 @@ interface Props {
 
 export async function GET({ props }: Props) {
 	const { post } = props;
+
+	const SoraReqular = fs.readFileSync(
+		path.resolve('./public/fonts/sora-latin-500-normal.ttf')
+	);
+	const SoraBold = fs.readFileSync(
+		path.resolve('./public/fonts/sora-latin-700-normal.ttf')
+	);
+
 	let html = {
 		type: 'div',
 		props: {
@@ -59,7 +70,8 @@ export async function GET({ props }: Props) {
 								props: {
 									style: {
 										marginLeft: 8,
-										fontSize: 20,
+										fontSize: 28,
+										fontFamily: 'DM Sans Regular',
 									},
 									children: 'blog.trevfox.dev',
 								},
@@ -76,13 +88,14 @@ export async function GET({ props }: Props) {
 							justifyContent: 'center',
 							padding: '20px 50px',
 							margin: '0 42px',
-							fontSize: 40,
+							fontSize: 52,
 							width: 'auto',
-							maxWidth: 550,
+							maxWidth: 650,
 							textAlign: 'center',
-							backgroundColor: 'black',
+							backgroundColor: '#A682FF',
 							color: 'white',
 							lineHeight: 1.4,
+							fontFamily: 'DM Sans Bold',
 						},
 						// tw: 'flex flex-wrap justify-center py-[20px] px-[50px] text-[40px] w-auto max-w-[550px] text-center bg-black text-white tracking-[1.4]',
 						children: post.data.title,
@@ -92,8 +105,22 @@ export async function GET({ props }: Props) {
 		},
 	};
 	return new ImageResponse(html, {
-		width: 800,
-		height: 400,
+		width: 1200,
+		height: 600,
+		fonts: [
+			{
+				name: 'DM Sans Bold',
+				data: SoraBold.buffer,
+				style: 'normal',
+				weight: 700,
+			},
+			{
+				name: 'DM Sans Regular',
+				data: SoraReqular.buffer,
+				style: 'normal',
+				weight: 500,
+			},
+		],
 	});
 }
 
