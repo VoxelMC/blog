@@ -15,7 +15,8 @@ let preformattedSlug = [...slug].reverse();
 preformattedSlug.push('/');
 let formattedSlug =
 	slug.startsWith('/') ? slug : preformattedSlug.reverse().join("");
-console.log(formattedSlug)
+// console.log(import.meta.env.SITE, formattedSlug)
+console.log(`${import.meta.env.SITE}/posts${formattedSlug}/og.png`)
 
 const siteTitle =
 	frontmatter ? frontmatter.title + ' | ' + config.title
@@ -52,7 +53,7 @@ const siteDescription = frontmatter?.description ?? config.description;
 <meta property="og:description" content={siteDescription} />
 <meta
 	property="og:image"
-	content=`${import.meta.env.SITE}/posts${formattedSlug}/og.png`
+	content=`https://blog.trevfox.dev/posts${formattedSlug}/og.png`
 />
 
 <!-- Twitter -->
@@ -62,5 +63,5 @@ const siteDescription = frontmatter?.description ?? config.description;
 <meta property="twitter:description" content={siteDescription} />
 <meta
 	property="twitter:image"
-	content=`${import.meta.env.SITE}/posts${formattedSlug}/og.png`
+	content=`https://blog.trevfox.dev/posts${formattedSlug}/og.png`
 />
