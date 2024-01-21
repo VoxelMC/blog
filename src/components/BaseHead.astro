@@ -52,7 +52,7 @@ const siteDescription = frontmatter?.description ?? config.description;
 <meta property="og:description" content={siteDescription} />
 <meta
 	property="og:image"
-	content=`${import.meta.env.SITE}/blog${formattedSlug}/og.png`
+	content=`${import.meta.env.SITE}/posts${formattedSlug}/og.png`
 />
 
 <!-- Twitter -->
@@ -60,3 +60,7 @@ const siteDescription = frontmatter?.description ?? config.description;
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={siteTitle} />
 <meta property="twitter:description" content={siteDescription} />
+<meta
+	property="twitter:image"
+	content=`${import.meta.env.SITE}/posts${formattedSlug}/og.png`
+/>
