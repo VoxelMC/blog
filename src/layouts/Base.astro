@@ -16,13 +16,14 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 export interface Props {
 	frontmatter?: PostFrontmatter;
 	title?: string;
+	slug?: string;
 }
-const { frontmatter, title } = Astro.props;
+const { frontmatter, title, slug } = Astro.props;
 ---
 
 <html lang={config.lang}>
 	<head>
-		<BaseHead {frontmatter} title={title} />
+		<BaseHead {slug} {frontmatter} title={title} />
 		<script lang="js">
 			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 				console.log(anchor, anchor.getAttribute('href'));

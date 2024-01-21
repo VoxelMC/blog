@@ -4,16 +4,17 @@ import { type PostFrontmatter } from '../content/config';
 
 export interface Props {
     frontmatter: PostFrontmatter;
+	slug: string;
 }
 
-const { frontmatter } = Astro.props;
+const { frontmatter, slug } = Astro.props;
 import '../global.css';
 import PostInfo from '../components/PostInfo.astro';
 ---
 
-<Base {frontmatter}>
+<Base {slug} {frontmatter}>
     <div
-        class="prose mb-12 prose-lightMode w-full min-w-full text-pretty text-justify leading-loose tracking-wide text-lightModeText dark:prose-darkMode prose-headings:font-medium prose-headings:text-accentColor prose-a:text-lightModeText prose-blockquote:text-lightModeText prose-strong:text-lightModeText prose-code:rounded-lg prose-code:dark:bg-darkCodeBg prose-code:bg-lightCodeBg prose-code:px-2 prose-code:py-1 prose-code:before:content-none prose-code:after:content-none prose-ol:text-lightModeText prose-li:my-0 prose-ul:text-lightModeText prose-table:text-lightModeText prose-tr:text-lightModeText prose-td:text-lightModeText dark:text-darkModeText dark:prose-a:dark:text-darkModeText dark:prose-blockquote:text-darkModeText dark:prose-strong:text-darkModeText dark:prose-ol:text-darkModeText dark:prose-ul:text-darkModeText dark:prose-table:text-darkModeText dark:prose-tr:text-darkModeText dark:prose-td:text-darkModeText w500:text-sm w500:leading-[2.2] w500:prose-h1:text-xl w500:prose-h2:text-lg w500:prose-h3:text-base w500:prose-h4:text-sm w500:prose-h5:text-sm w500:prose-h6:text-sm w400:text-xs w400:leading-[2.2]"
+        class="prose mb-12 prose-lightMode w-full min-w-full text-pretty text-justify leading-loose tracking-wide text-lightModeText dark:prose-darkMode prose-headings:scroll-mt-8 prose-headings:font-medium prose-headings:text-accentColor prose-a:text-lightModeText prose-blockquote:text-lightModeText prose-strong:text-lightModeText prose-code:rounded-lg prose-code:dark:bg-darkCodeBg prose-code:bg-lightCodeBg prose-code:px-2 prose-code:py-1 prose-code:before:content-none prose-code:after:content-none prose-ol:text-lightModeText prose-li:my-0 prose-ul:text-lightModeText prose-table:text-lightModeText prose-tr:text-lightModeText prose-td:text-lightModeText dark:text-darkModeText dark:prose-a:dark:text-darkModeText dark:prose-blockquote:text-darkModeText dark:prose-strong:text-darkModeText dark:prose-ol:text-darkModeText dark:prose-ul:text-darkModeText dark:prose-table:text-darkModeText dark:prose-tr:text-darkModeText dark:prose-td:text-darkModeText w500:text-sm w500:leading-[2.2] w500:prose-h1:text-xl w500:prose-h2:text-lg w500:prose-h3:text-base w500:prose-h4:text-sm w500:prose-h5:text-sm w500:prose-h6:text-sm w400:text-xs w400:leading-[2.2]"
     >
         <PostInfo
             title={frontmatter.title}

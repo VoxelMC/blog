@@ -5,11 +5,17 @@ import type { PostFrontmatter } from '../content/config';
 interface Props {
 	frontmatter?: PostFrontmatter;
 	title?: string;
+	slug?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { frontmatter, title } = Astro.props;
+const { frontmatter, title, slug = '/' } = Astro.props;
+let preformattedSlug = [...slug].reverse();
+preformattedSlug.push('/');
+let formattedSlug =
+	slug.startsWith('/') ? slug : preformattedSlug.reverse().join("");
+console.log(formattedSlug)
 
 const siteTitle =
 	frontmatter ? frontmatter.title + ' | ' + config.title
@@ -44,6 +50,10 @@ const siteDescription = frontmatter?.description ?? config.description;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={siteTitle} />
 <meta property="og:description" content={siteDescription} />
+<meta
+	property="og:image"
+	content=`${import.meta.env.SITE}/blog${formattedSlug}/og.png`
+/>
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary" />
