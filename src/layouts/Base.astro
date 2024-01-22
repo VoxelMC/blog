@@ -5,10 +5,12 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
 import 'remixicon/fonts/remixicon.css';
-
 import '@fontsource/sora/400.css';
 import '@fontsource/sora/500.css';
 import '@fontsource/sora/700.css';
+import '@fontsource-variable/jetbrains-mono/wght-italic.css';
+import '@fontsource-variable/jetbrains-mono';
+
 import type { PostFrontmatter } from '../content/config';
 
 import SpeedInsights from '@vercel/speed-insights/astro';
@@ -42,11 +44,11 @@ const { frontmatter, title, slug } = Astro.props;
 	</head>
 	<body
 		style="padding-left: calc(100vw - 100%);"
-		class="mx-auto max-w-[860px] overflow-y-scroll bg-lightModeBg scrollbar scrollbar-thumb-accentColor dark:bg-darkModeBg dark:text-darkModeText"
+		class="mx-auto max-w-[66ch] overflow-y-scroll bg-lightModeBg scrollbar scrollbar-thumb-accentColor dark:bg-darkModeBg dark:text-darkModeText"
 	>
 		<Nav />
 		<main
-			class="min-h-[calc(100dvh-90px-70px)] py-10 w500:min-h-[calc(100dvh-110px-70px)]"
+			class="min-h-[calc(100dvh-90px-70px)] px-0 py-10 w500:min-h-[calc(100dvh-110px-70px)] w500:px-4"
 		>
 			<slot />
 		</main>

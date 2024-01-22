@@ -10,9 +10,12 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Sora', ...defaultTheme.fontFamily.sans],
+				mono: ['"JetBrains Mono Variable"', ...defaultTheme.fontFamily.mono]
 			},
 			colors: {
-				lightModeBg: '#E6E6E6',
+				// lightModeBg: '#E6E6E6', // Default
+				lightModeBg: '#FAF5FF', // Lavender Whip
+				// lightModeBg: '#FEF5EA', // Creame
 				darkModeBg: '#1A1A1A',
 				accentColor: '#A682FF',
 				lightModeText: 'black',

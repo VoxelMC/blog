@@ -1,5 +1,9 @@
 mark {
-	@apply bg-accentColor;
+	@apply bg-accentColor px-2;
+}
+
+code {
+	@apply !font-mono;
 }
 
 a:has(.anchor-link) {
@@ -10,8 +14,16 @@ a:has(.anchor-link) {
 	@apply text-lightModeText underline dark:text-darkModeText hover:!text-accentColor !transition-colors;
 }
 
-:not(li) > a:not(:has(i)) {
-	@apply !text-accentColor hover:!text-white transition-colors;
+.prose :not(li) > a:not(:has(i)) {
+	@apply !text-accentColor hover:!text-lightModeText dark:hover:!text-darkModeText transition-colors;
+}
+
+.prose abbr {
+	@apply decoration-accentColor cursor-default;
+}
+
+.prose kbd {
+	@apply border border-lightModeText dark:border-darkModeText
 }
 
 .anchor-link {

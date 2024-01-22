@@ -20,6 +20,9 @@ dependencies:
   '@astrojs/vercel':
     specifier: ^7.0.0
     version: 7.0.0(astro@4.2.1)
+  '@fontsource-variable/jetbrains-mono':
+    specifier: ^5.0.19
+    version: 5.0.19
   '@fontsource/sora':
     specifier: ^5.0.16
     version: 5.0.16
@@ -1035,6 +1038,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@fontsource-variable/jetbrains-mono@5.0.19:
+    resolution: {integrity: sha512-7PTG1Kp3B/FgoNVPT8da4humj5JxQYxTtO08ZPS2IfanS37Yb/WShbgScnG/iupuFwiRnHVkIuC/2czxItxmyg==}
+    dev: false
 
   /@fontsource/sora@5.0.16:
     resolution: {integrity: sha512-H9014qWhe8tEDHjl8NaYRXRBHkQoBG+P5UnivT9DhbJNmPZn6ZXYD+NFHQWatAxrlriIcavjgSEVtGxZe/+/Cw==}
