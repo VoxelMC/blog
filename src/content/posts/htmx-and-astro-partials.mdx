@@ -1,0 +1,262 @@
+---
+title: 'Using HTMX with Astro Partials'
+description: 'Learn how to make an HTMX API using Astro Partials'
+pubDate: 'Jan 26 2024'
+tags: ['astro', 'htmx', 'guide-recipe']
+---
+
+## Table of Contents
+
+## Overview
+
+This recipe will get you started using Astro's page partials API and HTMX `GET`/`POST` requests with `hx-include`.
+
+## Project Prerequisites
+
+Before starting with this guide, you will need an
+[Astro](https://docs.astro.build/en/install/auto/) project ready to go. I will
+be starting with the <mark>blank</mark> template provided by `npm create astro`.
+I will also use [<mark>Tailwind</mark>](https://tailwindcss.com/docs/) and
+[<mark>@tailwindcss/typography</mark>](https://tailwindcss.com/docs/typography-plugin)
+in this example to keep styles verbose.
+
+Then, add the HTMX script to your Astro project. I will use the CDN for the sake
+of this recipe, but you can choose your
+[preferred method!](https://htmx.org/docs/#installing)
+
+```astro title="src/pages/index.astro" ins={12-15}
+---
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+		<script
+			src="https://unpkg.com/htmx.org@1.9.10"
+			integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+			crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<h1>Astro</h1>
+	</body>
+</html>
+```
+
+## Let's `GET` Started!
+
+First, let's model some sort of stateful application for HTMX. In this example,
+each endpoint will encode the information to replace itself with the next one.
+For example,
+
+```html title="pages/"
+api/first.astro -> api/second.astro -> api/third.astro -> api/first.astro
+```
+
+First, add some logic to make a `GET` request to `/api/first` when the page
+loads. _I will also add some Tailwind classes as I go on, but you can choose to
+ignore them and do something else entirely._
+
+```astro title="src/pages/index.astro" ins={19}
+---
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+		<script
+			src="https://unpkg.com/htmx.org@1.9.10"
+			integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+			crossorigin="anonymous"></script>
+	</head>
+	<body class="prose p-4">
+		<h1>Astro</h1>
+		<div hx-get="/api/first" hx-trigger="load" hx-swap="outerHTML"></div>
+	</body>
+</html>
+```
+
+Then, set up your `a.astro`, `b.astro`, and `c.astro` endpoints in
+`src/pages/api`. Each of these endpoints should `export const partial = true`.
+This signals to the Astro compiler that this page should not serve more HTML
+than is present in the `.astro` file. You can read more about **page partials**
+[here](https://docs.astro.build/en/core-concepts/astro-pages/#page-partials).
+
+```astro title="src/pages/api/first.astro"
+---
+export const partial = true;
+---
+
+<div id="first">
+	<h1>Hello, I'm First!</h1>
+	<button
+		class="rounded bg-slate-200 px-2"
+		hx-get="/api/second"
+		hx-target="#first"
+		hx-swap="outerHTML">Goto Second</button
+	>
+</div>
+```
+
+```astro title="src/pages/api/second.astro"
+---
+export const partial = true;
+---
+
+<div id="second">
+	<h1>Bonjour, je suis le deuxième !</h1>
+	<button
+		class="rounded bg-slate-200 px-2"
+		hx-get="/api/third"
+		hx-target="#second"
+		hx-swap="outerHTML">Goto Third</button
+	>
+</div>
+```
+
+```astro title="src/pages/api/third.astro"
+---
+export const partial = true;
+---
+
+<div id="third">
+	<h1>Привіт, я третій!</h1>
+	<button
+		class="rounded bg-slate-200 px-2"
+		hx-get="/api/first"
+		hx-target="#third"
+		hx-swap="outerHTML">Goto First</button
+	>
+</div>
+```
+
+Test your HTMX creation using `npm run dev`, and click away at your lovely new
+button!
+
+This should get you started using HTMX and Astro together, but there is a lot
+more you can do with an endpoint in Astro.
+
+Before we move on, you may be asking:
+
+> Trevor, Astro already supports using TypeScript to write API endpoints. Why
+> are you writing this in a `.astro` file?
+
+<cite class="-pt-4 pl-auto text-right">--- You, my faithful reader</cite>
+
+To that I say: Astro's HTML rendering engine is extremely powerful! TypeScript
+(`.ts`) endpoints are particularly useful for data and image generation.
+However, a `.astro` file gives us the ability to render _with ease!_ Need an
+Astro component? Heck, _just throw it in there!_
+
+## Keep Me `POST`ed!
+
+There are a few ways to send user input to the server with HTMX. Since `<form>`s
+are pretty trivial in terms of syntax, even with HTMX, I will try something a
+little different.
+
+HTMX's `hx-include` attribute allows you to select an element from the DOM tree
+and _include_ its value as part of the AJAX request. Using this attribute, you
+could functionally make a `POST` endpoint out of an Astro file, and send it a
+body consisting of data from inputs all around a page. _The following example is
+a little contrived, but it should give you a clear picture on how to handle this
+kind of <mark>request body.</mark>_
+
+First, add another `<div>` in `index.astro` as well as some logic to get this
+started.
+
+```astro title="src/pages/index.astro" ins={12-33} "hx-include="previous #post-input" ""/api/postit"" "name="post-input-2" "name="post-input-1"
+---
+
+---
+
+<html lang="en">
+	<head>
+		<!-- ... -->
+	</head>
+	<body class="prose p-4">
+		<h1>Astro</h1>
+		<div hx-get="/api/first" hx-trigger="load" hx-swap="outerHTML"></div>
+		<div class="mt-4">
+			<input
+				name="post-input-1"
+				class="post-input rounded border border-black bg-slate-200 px-2"
+				id="post-input-1"
+				type="text"
+			/>
+			<input
+				name="post-input-2"
+				class="post-input rounded border border-black bg-slate-200 px-2"
+				id="post-input-2"
+				type="text"
+			/>
+			<button
+				class="rounded bg-slate-200 px-2"
+				hx-post="/api/postit"
+				hx-target="next #post-output"
+				hx-swap="beforeend"
+				hx-include=".post-input">Post It!</button
+			>
+			<ol id="post-output"></ol>
+		</div>
+	</body>
+</html>
+```
+
+In the above example, I added a button which both `POST`s to `/api/postit` and
+`hx-include`s any element with the class `post-input`. **Pay attention to the
+input `name`s, you will need those later!**
+
+Now, add some logic to handle a `POST` request in `src/pages/api/postit.astro`!
+This endpoint will return a response code (`405`, "Method not allowed") for any
+request that is **not** a `POST` request. Don't forget to export partial!
+
+```astro title="src/pages/api/postit.astro" {2}
+---
+export const partial = true;
+
+if (Astro.request.method !== 'POST') {
+	return new Response('Method not allowed.', { status: 405 });
+}
+---
+```
+
+Then, add a way to handle the incoming `FormData` and display the output! You
+can get the values from the `FormData` using the input `name`s I mentioned
+earlier.
+
+```astro title="src/pages/api/postit.astro" ins={8-10,13}
+---
+export const partial = true;
+
+if (Astro.request.method !== 'POST') {
+	return new Response('Method not allowed.', { status: 405 });
+}
+
+const formData = await Astro.request.formData();
+const data1 = formData.get('post-input-1').toString();
+const data2 = formData.get('post-input-2').toString();
+---
+
+<li class="my-0 text-sky-600">{data1 + data2}</li>
+```
+
+This example will concatenate the text from each input and display that as a
+list item in the `#post-output` `div` below! **Try it on for speed!**
+
+## Conclusion
+
+I hope that this example helps you get started on building **AMAZING**,
+**BLAZINGLY FAST**, **STATEFUL** HTMX web applications. At least, I hope you
+learned a little bit more about Astro page partials and HTMX attributes.
+
+Thank you, dear Reader, for taking the time to try something new. Please stay
+alert for my next posts!

@@ -1,9 +1,18 @@
 mark {
-	@apply bg-accentColor px-2;
+	@apply bg-accentColor px-2 font-bold text-darkModeText;
 }
 
 code {
 	@apply !font-mono;
+	font-variant-ligatures: common-ligatures;
+}
+
+.expressive-code {
+	@apply my-8
+}
+
+.expressive-code code {
+	@apply !bg-transparent;
 }
 
 a:has(.anchor-link) {
@@ -11,20 +20,42 @@ a:has(.anchor-link) {
 }
 
 #table-of-contents + ul > li > a {
-	@apply text-lightModeText underline dark:text-darkModeText hover:!text-accentColor !transition-colors;
+	@apply text-lightModeText underline !transition-colors hover:!text-accentColor dark:text-darkModeText;
+}
+
+#table-of-contents + ul ul {
+	@apply my-0;
 }
 
 .prose :not(li) > a:not(:has(i)) {
-	@apply !text-accentColor hover:!text-lightModeText dark:hover:!text-darkModeText transition-colors;
+	@apply !text-accentColor transition-colors hover:!text-lightModeText dark:hover:!text-darkModeText;
 }
 
 .prose abbr {
-	@apply decoration-accentColor cursor-default;
+	@apply cursor-default decoration-accentColor decoration-dashed decoration-2;
+}
+
+.prose abbr:has(> mark) {
+	@apply decoration-darkModeText;
 }
 
 .prose kbd {
-	@apply border border-lightModeText dark:border-darkModeText
+	@apply border border-lightModeText dark:border-darkModeText;
 }
+
+.prose blockquote:has(+ cite) {
+	@apply mb-0;
+}
+
+.prose blockquote:has(+ cite) p {
+	@apply mb-0;
+}
+
+.prose blockquote + cite {
+	@apply block ml-auto;
+}
+
+.prose 
 
 .anchor-link {
 	@apply my-auto text-accentColor !no-underline opacity-0;
