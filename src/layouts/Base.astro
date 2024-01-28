@@ -26,20 +26,6 @@ const { frontmatter, title, slug } = Astro.props;
 <html lang={config.lang}>
 	<head>
 		<BaseHead {slug} {frontmatter} title={title} />
-		<script lang="js">
-			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-				console.log(anchor, anchor.getAttribute('href'));
-				anchor.addEventListener('click', function (e) {
-					e.preventDefault();
-
-					document
-						.querySelector(anchor.getAttribute('href'))
-						.scrollIntoView({
-							behavior: 'smooth',
-						});
-				});
-			});
-		</script>
 		<SpeedInsights />
 	</head>
 	<body
@@ -53,5 +39,19 @@ const { frontmatter, title, slug } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+		<script is:inline defer lang="js">
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				// console.log(anchor, anchor.getAttribute('href'));
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+
+					document
+						.querySelector(anchor.getAttribute('href'))
+						.scrollIntoView({
+							behavior: 'smooth',
+						});
+				});
+			});
+		</script>
 	</body>
 </html>
