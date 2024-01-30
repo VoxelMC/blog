@@ -1,10 +1,11 @@
 mark {
-	@apply bg-accentColor px-2 font-bold text-darkModeText;
+	@apply bg-accentColor px-1 py-0.5 font-bold text-darkModeText text-sm;
 }
 
 code {
 	@apply !font-mono;
 	font-variant-ligatures: common-ligatures;
+	font-feature-settings: "calt", "zero", "ss20" !important;
 }
 
 .expressive-code {

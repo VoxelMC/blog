@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BlogPost from '../../../layouts/BlogPost.astro';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -9,10 +9,15 @@ export async function getStaticPaths() {
         props: { entry },
     }));
 }
+
+export interface Props {
+	entry: CollectionEntry<'posts'>
+}
+
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-console.log(entry.slug)
+// console.log(entry.slug)
 ---
 
 <BlogPost slug={entry.slug} frontmatter={entry.data}>
