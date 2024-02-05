@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
+
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import smartypants from 'remark-smartypants';
 import remarkToc from 'remark-toc';
@@ -9,6 +10,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
 import expressiveCode from 'astro-expressive-code';
 import metaTags from 'astro-meta-tags';
+
 // import tailwindConfigViewer from 'astro-tailwind-config-viewer';
 
 import vercel from '@astrojs/vercel/static';

@@ -9,19 +9,32 @@ import Base from '../layouts/Base.astro';
 		About
 	</h2>
 
-	<div class="mt-4 tracking-wide text-justify w500:text-sm w500:leading-[2.2]">
+	<div
+		class="prose mt-4 text-left tracking-wide text-lightModeText prose-code:rounded-sm prose-code:bg-lightCodeBg prose-code:px-1 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none dark:text-darkModeText prose-code:dark:bg-darkCodeBg w500:text-sm w500:leading-[2.2]"
+	>
 		<p class="mb-4">
 			As a Biochemist and a Computer Programmer, I will use this blog to
 			marry the two topics into a (somewhat) cohesive discussion. This
 			discussion will be about what things are, how to do things, and the
-			implications of new technology! 
+			implications of new technology!
+		</p>
+		<p class="mb-4">
+			You can read more about me in detail <a
+				class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+				href="/posts/hello-world/">here</a
+			>.
+			Moreover, if you are interested in my content, you can subscribe to my
+			RSS<i class="ri-rss-fill"></i> feed <a
+				class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+				href="/feed.xml/">here</a
+			>.
 		</p>
 		<p>
-			This beautiful blog is built on the <a
-				class="underline transition-colors hover:text-accentColor dark:text-darkModeText w500:text-sm"
+			This blog is built on the beautiful <a
+				class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
 				target="_blank"
 				href="https://github.com/ekmas/minimal"
-				>Minimal theme by `ekmas`</a
+				>Minimal theme by <code>ekmas</code></a
 			>.
 		</p>
 	</div>
