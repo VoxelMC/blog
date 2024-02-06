@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-
+import sitemap from '@astrojs/sitemap';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+
 import smartypants from 'remark-smartypants';
 import remarkToc from 'remark-toc';
 import emoji from 'remark-emoji';
@@ -17,25 +18,20 @@ import vercel from '@astrojs/vercel/static';
 
 /** @type {import('astro-expressive-code').AstroExpressiveCodeOptions} */
 const astroExpressiveCodeOptions = {
-	// You can set configuration options here
 	themes: ['material-theme-darker', 'rose-pine-moon'],
 	styleOverrides: {
-	// 	// You can also override styles
-	// 	// borderRadius: '0.5rem',
 		frames: {
-			editorTabBarBackground: "#333333",
+			editorTabBarBackground: '#333333',
 			// editorActiveTabForeground: "#A682FF",
-			editorActiveTabForeground: "#FFFFFF",
+			editorActiveTabForeground: '#FFFFFF',
 			// editorActiveTabIndicatorBottomColor: "#A682FF",
-			editorActiveTabIndicatorBottomColor: "#aaaaaa00",
+			editorActiveTabIndicatorBottomColor: '#aaaaaa00',
 			// editorTabBarBorderColor: "#333333"
-			editorTabBarBorderColor: "#A682FF",
-			
+			editorTabBarBorderColor: '#A682FF',
 		},
 		// codeBackground: '#333333'
-		borderColor: "#A682FF"
+		borderColor: '#A682FF',
 	},
-	
 };
 
 // https://astro.build/config
@@ -83,5 +79,6 @@ export default defineConfig({
 		// 	overlayMode: 'embed',
 		// }),
 		metaTags(),
+		sitemap(),
 	],
 });
