@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { ImageResponse } from '@vercel/og';
+import { createElement } from 'react';
 ('sora-latin-500-normal.woff2');
 
 interface Props {
@@ -19,8 +20,7 @@ export async function GET({ props }: Props) {
 		path.resolve('./public/fonts/sora-latin-700-normal.ttf')
 	);
 
-	let html = {
-		type: 'div',
+	let html = createElement('div', {
 		props: {
 			// tw: 'flex h-full w-full items-center justify-center font-bold bg-white',
 			style: {
@@ -103,7 +103,7 @@ export async function GET({ props }: Props) {
 				},
 			],
 		},
-	};
+	});
 	return new ImageResponse(html, {
 		width: 1200,
 		height: 600,

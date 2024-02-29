@@ -1,0 +1,315 @@
+---
+title: 'The Theory of NMR'
+description:
+    "An undergraduate's explanation of nuclear magenetic resonance spectroscopy."
+pubDate: 'Feb 29 2024'
+tags: ['nmr', 'analytical-chemistry']
+---
+
+import { Image } from 'astro:assets';
+
+import fid from './images/nmr/fid.png';
+import ftspec from './images/nmr/ftspec.png';
+import caffeicAcid from './images/nmr/caffeicAcid.png';
+import addedSines from './images/nmr/addedsines.png';
+
+## Table of Contents
+
+## Introduction
+
+> If you think about it---really hard---we are all just little tiny magnets,
+> aren't we?
+
+Nuclear magnetic resonance (NMR) spectroscopy is an extremely powerful tool with
+many interesting applications. It can be used to image tissue, identify chemical
+structures, map chemical taxonomy, and more!
+
+**So, what exactly is this magic?** <br /> This guide will explain the what, the
+why, and the how of NMR spectroscopy!
+
+## Level 1: The Basics
+
+The goal of NMR is to analyze a sample. Usually, this sample is dissolved in an
+NMR inactive solvent, and placed in an NMR tube.
+
+/_ Picture of NMR tube _/
+
+Solid-state NMR, where a pure crystalline sample is analyzed without solvent is
+also possible. Also, an MRI machine in a hospital is just an NMR
+instrument---making the PATIENT the SAMPLE!
+
+## Level 2: The Theory
+
+NMR relies on a few basic principles that are fundamental to physics and
+chemistry.
+
+### The Nuclear
+
+Every "thing" in the universe is made up of atoms. These atoms can have
+different properties, but they are all similar in their construction. They are
+all made of neutrons, protons, and electrons. An **NMR active nucleus** is one
+that has a property called <abbr title="Usually, an atom with spin has an odd 
+number of protons and neutrons in the nucleus."><mark>spin</mark></abbr>.
+One such atom---and the most commonly measured---is the **proton
+(<sup>1</sup>H)**. Others include <sup>13</sup>C, <sup>15</sup>N, and
+<sup>31</sup>P! The spin causes these atoms to act like <mark>tiny bar magnets</mark>.
+
+The NMR inactive solvents mentioned before are those which have had their
+protons exchanged with **deuterium (<sup>2</sup>H)**. Deuterium is inactive
+because it has an even number of protons (1p<sup>+</sup>) and neutrons
+(1n<sup>0</sup>)! Common solvents include CDCl<sub>3</sub>,
+DMSO-_d<sub>6</sub>_, MeOD, D<sub>2</sub>O, and Acetone-_d<sub>6</sub>_.
+
+With that in mind, you can measure any organic molecule!
+
+> NMR measures the presence of NMR active nuclei which are those with an odd
+> number of particles in its nucleus.
+
+### The Magnetic
+
+So, now you have a molecule with a bunch of NMR active atoms. Now what? Well,
+**you put them into a really strong magnetic field, of course!**
+
+An NMR instrument uses a supercooled, superconductive coil to generate an
+<mark>intense magnetic field</mark> called <mark>B<sub>0</sub></mark>
+in a ring around your sample. When you put NMR active nuclei into a very strong magnetic
+field, they begin to align themselves **parallel to the magnetic field lines**. The
+population of nuclei that align **with** the field is called
+<mark>P(α)</mark>. The population that aligns **against** the field is
+called <mark>P(β)</mark>.
+
+Since the α population is aligned _with_ the field, it is a _slightly_ more
+favourable state. Thus, there is an _extremely_ slight bias in the population in
+P(α). Considering that α and β populations cancel out 1-to-1 (they are aligned
+oppositely), there is a slight <mark>bulk magnetization</mark> **with** the
+magnetic field due to the slight bias overpopulation of P(α).
+
+<figure id='fig-2' class="mx-auto block w-fit">
+	<Image src={addedSines} alt="An unprocessed free-induction-decay spectrum." />
+	<figurecaption>Figure 1. Left: total ensemble of spins in the sample; Right: vector of the bulk magnetization.</figurecaption>
+</figure>
+
+Conventionally, this "bulk magnetization" initially points towards the positive Z axis, or
+<mark>"+Z"</mark>. Note that this is different from typical 3D axes; the Z axis --
+not the Y axis -- is the vertical one in NMR.
+
+> Putting NMR active nuclei in a magnetic field aligns them with (α) or against
+> (β) the field lines. The population difference between the two states leads to
+> bulk magnetization along the +Z.
+
+### The Resonance
+
+A nucleus with spin also <mark>precesses</mark>.
+[This YouTube video](https://youtu.be/7aRKAXD4dAg?si=rK2Jx5HRlFPhpFDm&t=58)
+explains nuclear precession very well. If you don't want to watch it, here is my
+best attempt at explaining it.
+
+> A nucleus with spin has angular momentum. When the bulk magnetization is
+> aligned parallel to the magnetic field, this momentum is hard to observe.
+> However, when the bulk magnetization is between +Z and -Z, the rotation of the
+> nucleus is observed as **precession**.
+
+<cite class="-pt-4 pl-auto text-right">--- Trev</cite>
+
+This precession occurs at an angular frequency (the frequency of one full
+rotation) which is characteristic for a specific nucleus at a specific magnetic
+field strength. This angular frequency of precession is called the <mark>Larmor
+frequency</mark>.
+
+// More here about resonance and larmor when I learn more.
+
+## Level 3: The Acquisition
+
+_This one gets a little technical... bear with me!_
+
+Now that everything is aligned, we have just _one_ problem. Nothing is really
+_happening_. Things are spinning, but we can't see it. This is because, now that
+all of the atoms are either spin up or spin down, they are precessing so that
+their bulk magnetization is pointing along the Z axis---straight up and down.
+
+> For visual reference, imagine looking at a spinning top **from the top** (and
+> that it is spinning but locked in place). You cannot observe any change, as it
+> all averages out pretty quick.
+
+<cite class="-pt-4 pl-auto text-right">--- Trev</cite>
+
+To actually _detect_ something, you have to <mark>change the direction of B<sub>0</sub></mark> 
+to have a **non-zero component** in the X-Y plane! That way, we can measure an oscillating 
+current in a coil of wire. Though not entirely accurate, you can imagine this as touching the 
+spinning top. The top will start to wobble, then try to return back to its original position --
+all while still spinning.
+
+_There is more information about **pulse sequences** in [this post](/posts/nmr-pulse-sequences). 
+This post just covers the basic <sup>1</sup>H sequence for now._
+
+### The 90&deg; Pulse
+
+The bulk magnetization can be moved using a <mark>radio-frequency (RF)
+pulse</mark> to apply a sort of **"torque"** to the atoms, effectively yanking the
+spins in a different direction. This is predictable, as long as we know the
+strength (in Teslas) of the magnetic field. Thus, we can fine tune **exactly how
+many degrees** we turn the vector by calculating the amount of time needed to
+send the RF pulse. This is known as the <mark>pulse-width</mark> and is usually
+in the `microseconds`. Usually, the 180&deg; pulse is calculated first, then
+divided by two to get the more common 90&deg; pulse.
+
+The NMR instrument that I use has a 9.4 T magnet, meaning that the pulse frequency
+needed to affect **protons** is near 400 MHz. We usually name the instruments
+after this frequency, so I would call it a 400 MHz NMR instrument!
+
+When you rotate a magnet inside a coil of wire, the electrons flow in the coil
+with a sinusoidal period. The frequency of this wave is equal to the angular
+frequency I mentioned [here](#the-resonance). This is then measured as a wave in
+the <mark>time domain</mark>. In a molecule with many different protons in different
+<mark>[chemical environments](#evolution-and-the-rotating-frame)</mark>, this time domain signal contains the summation
+of all the signals. Imagine adding two sine waves together. **This is important for later.**
+
+<figure id='fig-2' class="mx-auto block w-fit">
+	<Image src={addedSines} alt="An unprocessed free-induction-decay spectrum." />
+	<figurecaption>Figure 2. Two sine waves (blue & green) added together (red wave).</figurecaption>
+</figure>
+
+### Inter-pulse Evolution
+
+Evolution describes the change of atoms **between** events such as pulsees. The time
+between pulses in an experiment can be the difference between having a signal and
+not! Without getting into TOO much detail, there are two major types of evolution.
+The first is <mark>chemical shift evolution</mark> and the second is
+called <mark>scalar evolution</mark>. Scalar evolution has a smaller effect overall,
+but it is important for building interesting pulse sequences!
+
+#### The Rotating Frame
+
+Evolution can be described using the <mark>rotating frame</mark> perspective. Imagine a
+merry-go-Round with three people on it. You are watching this merry-go-round spin with
+an angular frequency of ω from the outside perspective. The three people on this merry-go-round
+represent protons that are spinning `counter-clockwise` at their Larmor frequency -- `ω` in this case. This is the
+observer's frame. 
+
+Now, here's the kicker. The rotating frame has the same merry-go-round, but YOU
+are sitting in the center, facing towards **one** of the three people. The person that you are facing
+is now the <mark>reference frequency</mark> -- again, in this case, `ω`. Now you would observe that all 
+three people are *no longer moving*, as they are now moving in *relation* to you. 
+
+The next mental exercise considers the fact that all of these "proton" people might not experience
+**the same magnetic field**. Perhaps this is a disturbance in the homogeneity of the magnetic field, 
+but most commonly, it is because the proton is experiencing a *local* magnetic field. A variety of
+things can cause this, but an important contributor is the local **chemical and magnetic environment** of the proton.
+
+#### Chemical Shift Evolution
+
+Even though the resonant frequency of a single proton is ~400 MHz in a 400 MHz
+instrument, that doesn't take into account the different **chemical and magnetic
+environments** in an organic molecule. Measured in Hz, chemical shift allows us to 
+tell proton environments from each other, as each of them (usually) show a peak 
+with a certain amount of shift. As you now know, a higher magnetic field increases 
+the Larmor frequency, and vice versa.
+
+All of these shifted frequencies are present in the **time domain** measurement
+after the 90&deg; pulse. Using a <mark>Fourier Transform</mark>, we can get the
+individual frequencies of the proton environments, enabling the elucidation of
+much more information!
+
+So, what does it look like?
+Imagine that a "proton" person experiences a *greater* magnetic field. Thus, its Larmor frequency
+-- which I will now call `λ` -- increases, and now `λ > ω`. In the rotating frame, you would 
+observe this person as walking counter-clockwise -- the direction of the merry-go-round. 
+The inverse is true for a lower magnetic field, where the person would be walking clockwise -- against
+the direction of the merry-go-round. The speed that the person moves away from the reference person around
+the circle represents the chemical shift. In other terms, it is `λ - ω = δ` where `δ` is the chemical shift.
+
+By subtracting the reference frequency, you essentially remove the contribution of the large, constant
+magnetic field (<code>B<sub>0</sub></code>) and isolate the relative difference due to the specific chemical environment of the nucleus in the sample.
+
+## Level 4: The Spectrum
+
+That was all pretty abstract---sorry about that. Allow me to put this all into
+visual terms!
+
+Here is an FID, or Free Induction Decay. This is what is directly measured from
+the instrument, in the time domain. You can think of this as taking an audio 
+recording of a bell that you just rung. There are many different frequencies
+present here, all added together.
+
+<figure id='fig-3' class="mx-auto block w-fit">
+	<Image src={fid} alt="An unprocessed free-induction-decay spectrum." />
+	<figurecaption>Figure 2. An unprocessed free-induction-decay spectrum.</figurecaption>
+</figure>
+
+Then, if we apply a Fourier Transform, we get this.
+
+<figure id='fig-4' class="mx-auto block w-fit">
+	<Image src={ftspec} alt="Processed, Fourier-transformed FID." />
+	<figurecaption>Figure 3. An FID that has been processed with the Fourier Transform.</figurecaption>
+</figure>
+
+Each of the peaks corresponds to a frequency that was measured in the original
+FID, giving undeniable structural information about the molecule being measured.
+This spectrum is one I acquired for caffeic acid.
+
+<figure id='fig-5' class="mx-auto block w-fit">
+	<Image src={caffeicAcid} alt="Molecule: caffeic acid Kekule structure." />
+	<figurecaption>Figure 4. The structure of caffeic acid.</figurecaption>
+</figure>
+
+So, what do you get out of an NMR? Using the information in [Figure 4](#fig-4) and more, you can resolve 
+the structure, determine concentration, or even map how many different compounds are in your solution (including impurities!).
+**NMR is extremely powerful!**
+
+_I will soon write a guide on how to interpret an NMR spectrum. For now, though, this article will 
+focus on the theory._
+
+## Level `n`: Other Concepts
+
+### Relaxation Pathways
+
+There are two relaxation pathways that cause nuclei to accelerate their relaxation to the ground state. 
+
+#### The <mark>T1</mark> Pathway 
+
+AKA the spin-lattice relaxation pathway -- occurs when protons rotate in relation to a <sup>13</sup>C atom as the
+molecule tumbles. If the tumbling occurs near the Larmor frequency, this induces unwanted `α -> β` or `β -> α`
+transitions and returning to the ground state quicker. This is actually a physical phenomenon!
+
+This type of relaxation occurs mostly with medium-sized molecules (around 1000 Da).
+
+#### The <mark>T2</mark> Pathway
+
+Random effects of tumbling molecules leads to randomized Larmor frequencies among spins, reducing coherence of the atoms.
+T2 relaxation occurs in the same way that Chemical Shift Evolution does. 
+
+Moreover, molecules with π-bonding have a magnetic field. If these molecules tumble slowly (over the course of acquisition window), 
+the change in local magnetic field induces field heterogeneity within the sample. However, this doesn't occur for quickly tumbling
+molecules, as the field averages out during the acquisition window.
+
+### The Product Operator Formalism
+
+WIP!
+
+### NMR Anecdotes
+
+WIP!
+
+### Decoupling
+
+WIP!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

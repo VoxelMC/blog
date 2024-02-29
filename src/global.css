@@ -20,7 +20,7 @@ a:has(.anchor-link) {
 	@apply no-underline;
 }
 
-#table-of-contents + ul > li > a {
+#table-of-contents + ul > li a {
 	@apply text-lightModeText underline !transition-colors hover:!text-accentColor dark:text-darkModeText;
 }
 
@@ -56,7 +56,9 @@ a:has(.anchor-link) {
 	@apply block ml-auto;
 }
 
-.prose 
+.prose figurecaption {
+	@apply text-sm mt-px italic;
+}
 
 .anchor-link {
 	@apply my-auto text-accentColor !no-underline opacity-0;

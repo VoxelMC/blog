@@ -1,0 +1,38 @@
+---
+title: 'NMR Data Processing Tips'
+description:
+    "How to get things phased, corrected, and ready to go!"
+pubDate: 'Mar 28 2024'
+tags: ['nmr', 'analytical-chemistry', 'resources']
+devOnly: true
+---
+
+
+## Table of Contents
+
+## Summary
+
+When you have a suite of NMR data,
+
+Make sure to get the chemical shifts right from the get go.
+
+## Step 1: Inspect the FID
+
+Let's remember what an FID is. Lots of signal at the beginning, not much at the end (where it is mostly noise).
+
+If there are beats, double check shimming.
+
+Multiply FID by some function.
+
+## Apodization
+
+Since the end of the FID is mostly noise, you can apply an exponential curve to the data to increase the signal at the beginning and 
+decrease it at the end. 
+
+Applying an exponential increases signal to noise, but it also broadens the peaks. This is not so much a problem for a carbon spectrum.
+
+You can combine an exponential of `-0.1 Hz` with a Gaussian of `1 Hz` to enhance the middle of the FID. This screws up integration,
+but you can get better peak resolution.
+
+
+

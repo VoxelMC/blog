@@ -9,8 +9,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Sora', ...defaultTheme.fontFamily.sans],
-				mono: ['"JetBrains Mono Variable"', ...defaultTheme.fontFamily.mono]
+				sans: ['Rubik', ...defaultTheme.fontFamily.sans],
+				mono: ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono]
 			},
 			colors: {
 				// lightModeBg: '#E6E6E6', // Default
@@ -18,13 +18,14 @@ export default {
 				// lightModeBg: '#FEF5EA', // Creame
 				darkModeBg: '#1A1A1A',
 				accentColor: '#A682FF',
+				accentColorLight: '#daccff',
 				lightModeText: 'black',
 				darkModeText: 'white',
 				darkCodeBg: '#333333',
 				lightCodeBg: '#CCCCCC',
 			},
 			screens: {
-				w500: { max: '500px' },
+				w500: { max: '600px' },
 				w400: { max: '400px' },
 			},
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any

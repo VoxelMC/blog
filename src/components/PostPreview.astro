@@ -37,7 +37,7 @@ const prettyDescription = description.endsWith(".") ? description : description 
 		</p>
 		<div class="flex w-max items-center">
 			<p class="text-sm leading-5 tracking-wide w500:text-xs">
-				<i class="ri-calendar-fill ri-lg"></i> {parsedDate.toDateString().replace(' ', ', ')} | {
+				<i class="ri-calendar-fill ri-lg mr-1.5"></i>{parsedDate.toDateString().replace(' ', ', ')} | <i class="ri-price-tag-3-fill ml-1 mr-2"></i>{
 					tags.map(tag => (
 						<a class="hover:text-accentColor hover:opacity-100 underline mr-1.5 transition-colors" href=`/tags/${tag}`>#{tag}</a>
 					))

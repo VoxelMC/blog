@@ -1,6 +1,7 @@
 ---
 import config from '../config';
 import type { PostFrontmatter } from '../content/config';
+import FontImport from './FontImport.astro';
 
 interface Props {
 	frontmatter?: PostFrontmatter;
@@ -16,7 +17,7 @@ preformattedSlug.push('/');
 let formattedSlug =
 	slug.startsWith('/') ? slug : preformattedSlug.reverse().join('');
 // console.log(import.meta.env.SITE, formattedSlug)
-console.log(`${import.meta.env.SITE}/posts${formattedSlug}/og.png`);
+// console.log(`${import.meta.env.SITE}/posts${formattedSlug}/og.png`);
 
 const siteTitle =
 	frontmatter ? frontmatter.title + ' | ' + config.title
@@ -77,3 +78,4 @@ const siteDescription = frontmatter?.description ?? config.description;
 />
 <meta property="twitter:image:width" content="800" />
 <meta property="twitter:image:height" content="400" />
+

@@ -5,15 +5,16 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
 import 'remixicon/fonts/remixicon.css';
-import '@fontsource/sora/400.css';
-import '@fontsource/sora/500.css';
-import '@fontsource/sora/700.css';
-import '@fontsource-variable/jetbrains-mono/wght-italic.css';
-import '@fontsource-variable/jetbrains-mono';
+// import '@fontsource/sora/400.css';
+// import '@fontsource/sora/500.css';
+// import '@fontsource/sora/700.css';
+// import '@fontsource-variable/jetbrains-mono/wght-italic.css';
+// import '@fontsource-variable/jetbrains-mono';
 
 import type { PostFrontmatter } from '../content/config';
 
 import SpeedInsights from '@vercel/speed-insights/astro';
+import FontImport from '../components/FontImport.astro';
 
 export interface Props {
 	frontmatter?: PostFrontmatter;
@@ -27,10 +28,13 @@ const { frontmatter, title, slug } = Astro.props;
 	<head>
 		<BaseHead {slug} {frontmatter} title={title} />
 		<SpeedInsights />
+		<FontImport />
 	</head>
 	<body
+		id="body"
 		style="padding-left: calc(100vw - 100%);"
-		class="mx-auto max-w-[66ch] overflow-y-scroll bg-lightModeBg scrollbar scrollbar-thumb-accentColor dark:bg-darkModeBg dark:text-darkModeText"
+		class="mx-auto max-w-[77ch] overflow-y-scroll bg-lightModeBg scrollbar scrollbar-thumb-accentColor data-[loaded=true]:transition-colors data-[loaded=true]:duration-400 dark:bg-darkModeBg dark:text-darkModeText"
+		data-loaded="false"
 	>
 		<Nav />
 		<main
@@ -40,17 +44,21 @@ const { frontmatter, title, slug } = Astro.props;
 		</main>
 		<Footer />
 		<script is:inline defer lang="js">
+			history.pushState('', document.title, window.location.pathname);
 			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-				// console.log(anchor, anchor.getAttribute('href'));
 				anchor.addEventListener('click', function (e) {
 					e.preventDefault();
-
+					// window.history.pushState();
+					history.pushState({}, '', anchor.getAttribute('href'));
 					document
 						.querySelector(anchor.getAttribute('href'))
 						.scrollIntoView({
 							behavior: 'smooth',
 						});
 				});
+			});
+			document.addEventListener('DOMContentLoaded', () => {
+				document.getElementById('body').dataset.loaded = 'true';
 			});
 		</script>
 	</body>
