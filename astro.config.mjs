@@ -20,7 +20,7 @@ import vercel from '@astrojs/vercel/static';
 const astroExpressiveCodeOptions = {
 	themes: ['material-theme-darker', 'rose-pine-moon'],
 	styleOverrides: {
-		uiFontFamily: "Sora",
+		uiFontFamily: "Rubik",
 		codeFontFamily: "'JetBrains Mono'",
 		frames: {
 			editorTabBarBackground: '#333333',
