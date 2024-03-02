@@ -51,8 +51,8 @@
 	};
 
 	function addEventListener() {
-		document
-			.getElementById('themeswitcherxd')
+		(document
+			.getElementById('themeswitcherxd') as HTMLElement)
 			.addEventListener('change', () => {
 				handleToggleClick();
 			});

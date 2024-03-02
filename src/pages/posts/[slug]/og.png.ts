@@ -166,7 +166,7 @@ export async function GET({ props }: Props) {
 // ],
 
 export async function getStaticPaths() {
-	const blogPosts = await getCollection('posts');
+	const blogPosts: CollectionEntry<'posts'>[] = await getCollection('posts');
 	return blogPosts.map(post => ({
 		params: { slug: post.slug },
 		props: { post },

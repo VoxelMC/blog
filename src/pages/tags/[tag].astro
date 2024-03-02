@@ -1,12 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 import Base from '../../layouts/Base.astro';
 import PostPreview from '../../components/PostPreview.astro';
 import MonthDivider from '../../components/MonthDivider.astro';
+type Post = CollectionEntry<'posts'>;
 
 export async function getStaticPaths() {
-	const allPosts = await getCollection('posts');
+	const allPosts: Post[] = await getCollection('posts');
 	const uniqueTags = [
 		...new Set(allPosts.map(post => post.data.tags).flat()),
 	];

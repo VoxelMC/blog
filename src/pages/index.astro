@@ -3,8 +3,11 @@ import Base from '../layouts/Base.astro';
 import PostPreview from '../components/PostPreview.astro';
 import { getCollection } from 'astro:content';
 import MonthDivider from '../components/MonthDivider.astro';
+import type { CollectionEntry } from 'astro:content';
 
-const allPosts = (await getCollection('posts')).filter(post =>
+type Post = CollectionEntry<'posts'>
+
+const allPosts: Post[] = (await getCollection('posts') as Post[]).filter(post =>
 	import.meta.env.DEV ? true : !post.data.devOnly
 );
 allPosts.sort(

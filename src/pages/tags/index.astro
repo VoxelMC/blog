@@ -1,7 +1,10 @@
 ---
-import Base from '../../layouts/Base.astro';
+import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
-const allPosts = (await getCollection('posts')).filter(post =>
+
+import Base from '../../layouts/Base.astro';
+
+const allPosts: CollectionEntry<'posts'>[] = (await getCollection('posts') as CollectionEntry<'posts'>[]).filter(post =>
     import.meta.env.DEV ? true : !post.data.devOnly
 );
 const tags = [...new Set(allPosts.map(post => post.data.tags).flat())];
