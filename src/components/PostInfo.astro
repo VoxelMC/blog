@@ -3,7 +3,7 @@ const { title, date, tags } = Astro.props;
 ---
 
 <div class="mb-5">
-    <h1 class="my-0 w-max text-4xl">{title}</h1>
+    <h2 transition:name={`${title}-${date}`} class="my-0 w-max text-4xl">{title}</h2>
     <div
         class="flex items-center justify-between w500:flex-col w500:items-start"
     >

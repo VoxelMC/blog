@@ -4,28 +4,42 @@ import PostPreview from '../components/PostPreview.astro';
 import { getCollection } from 'astro:content';
 import MonthDivider from '../components/MonthDivider.astro';
 
-const allPosts = (await getCollection('posts')).filter(post => import.meta.env.DEV ? true : !post.data.devOnly);
+const allPosts = (await getCollection('posts')).filter(post =>
+	import.meta.env.DEV ? true : !post.data.devOnly
+);
 allPosts.sort(
 	(a, b) =>
 		new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 );
-
 ---
 
 <Base title="Home">
 	{
-		allPosts.map(post => (
-			<>
-				<MonthDivider date={post.data.pubDate as string} />
-				<PostPreview
-					url={'/posts/' + post.slug}
-					title={post.data.title}
-					description={post.data.description}
-					pubDate={post.data.pubDate}
-					tags={post.data.tags}
-					dev={post.data.devOnly}
-				/>
-			</>
-		))
+		allPosts.map((post, i, array) => {
+			let shouldAddDivide;
+			if (!!array[i - 1]) {
+				const currentDate = new Date(post.data.pubDate).getMonth();
+				const nextDate = new Date(array[i - 1].data.pubDate).getMonth();
+				shouldAddDivide = currentDate !== nextDate;
+			} else {
+				shouldAddDivide = true;
+			}
+
+			return (
+				<>
+					{shouldAddDivide && (
+						<MonthDivider date={post.data.pubDate as string} />
+					)}
+					<PostPreview
+						url={'/posts/' + post.slug}
+						title={post.data.title}
+						description={post.data.description}
+						pubDate={post.data.pubDate}
+						tags={post.data.tags}
+						dev={post.data.devOnly}
+					/>
+				</>
+			);
+		})
 	}
 </Base>
