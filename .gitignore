@@ -1,6 +1,7 @@
 # build output
 dist
 .astro/
+.vite/
 
 # dependencies
 node_modules/

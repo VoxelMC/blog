@@ -11,6 +11,7 @@ import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
 import expressiveCode from 'astro-expressive-code';
 import metaTags from 'astro-meta-tags';
 import satori from 'satori-astro';
+import vtbot from 'astro-vtbot';
 
 // import tailwindConfigViewer from 'astro-tailwind-config-viewer';
 
@@ -88,5 +89,6 @@ export default defineConfig({
 		metaTags(),
 		sitemap(),
 		satori(),
+		vtbot(),
 	],
 });
