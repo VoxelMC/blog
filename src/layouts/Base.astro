@@ -48,6 +48,7 @@ const { frontmatter, title, slug } = Astro.props;
 		<script is:inline defer lang="js">
 			// history.pushState('', document.title, window.location.pathname);
 			document.addEventListener('astro:page-load', () => {
+				document.getElementById('body').dataset.loaded = 'true';
 				document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 					anchor.addEventListener('click', function (e) {
 						e.preventDefault();
@@ -59,57 +60,10 @@ const { frontmatter, title, slug } = Astro.props;
 							});
 					});
 				});
-				document.addEventListener('DOMContentLoaded', () => {
-					document.getElementById('body').dataset.loaded = 'true';
-				});
 			});
-		</script>
-		<script>
-			function colorMode() {
-				if (
-					localStorage.theme === 'dark' ||
-					(!('theme' in localStorage) &&
-						window.matchMedia('(prefers-color-scheme: dark)')
-							.matches)
-				) {
-					document.documentElement.classList.add('dark');
-				} else {
-					document.documentElement.classList.remove('dark');
-				}
-			}
-
-			colorMode();
-			document.addEventListener('astro:after-swap', () => {
-				colorMode();
+			document.addEventListener('DOMContentLoaded', () => {
+				document.getElementById('body').dataset.loaded = 'true';
 			});
-			// document.addEventListener('astro:before-preparation', (event) => {
-			// 	let viewTransitionName;
-			// 	if (event.navigationType !== 'traverse') {
-			// 		viewTransitionName =
-			// 			'' +
-			// 			event
-			// 				.sourceElement!.computedStyleMap()
-			// 				.get('view-transition-name');
-			// 		event.newDocument.querySelector(
-			// 			'h1'
-			// 		)!.style.viewTransitionName = viewTransitionName;
-			// 		history.replaceState(
-			// 			{ ...history.state, viewTransitionName },
-			// 			''
-			// 		); // remember for history traversal
-			// 	} else {
-			// 		if (event.direction === 'back') {
-			// 			viewTransitionName = history.state.viewTransitionName;
-			// 			document.querySelector('h1')!.style.viewTransitionName =
-			// 				viewTransitionName;
-			// 		} else {
-			// 			event.newDocument.querySelector(
-			// 				'h1'
-			// 			)!.style.viewTransitionName = viewTransitionName;
-			// 			viewTransitionName = history.state.viewTransitionName;
-			// 		}
-			// 	}
-			// });
 		</script>
 	</body>
 </html>
