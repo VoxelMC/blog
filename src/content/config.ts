@@ -8,7 +8,7 @@
 // 1. Import utilities from `astro:content`
 import { z, defineCollection } from 'astro:content';
 export interface PostFrontmatter {
-    layout: string;
+    // layout: string;
     title: string;
     description: string;
     pubDate: string;
