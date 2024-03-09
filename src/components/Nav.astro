@@ -3,25 +3,28 @@ import ThemeSwitcher from './ThemeSwitcher.astro';
 ---
 
 <nav
-	class="px-2 flex h-[90px] items-center justify-between w500:h-[110px] w500:flex-col w500:py-4"
+	transition:persist
+	class="flex h-[90px] items-center justify-between px-2 w500:mt-8 w500:h-[110px] w500:flex-col w500:py-4"
 >
 	<a class="select-none transition-colors hover:text-accentColor" href="/">
 		<h2 class="text-3xl font-medium w500:text-2xl">
-			<span class="text-accentColor transition-colors hover:text-lightModeText dark:hover:text-darkModeText"
+			<span
+				class="text-accentColor transition-colors hover:text-lightModeText dark:hover:text-darkModeText"
 				>blog</span
 			><span
 				class="text-lightModeText transition-colors hover:!text-accentColor dark:text-darkModeText"
-				>.trevfox.dev</span>
+				>.trevfox.dev</span
+			>
 		</h2>
 	</a>
 
 	<div class="flex items-center text-lg w500:text-base">
 		<a
-			class="mr-10 select-none transition-colors navbar-link hover:text-accentColor"
+			class="navbar-link jbmono mr-10 select-none font-bold transition-colors hover:text-accentColor"
 			href="/tags">tags</a
 		>
 		<a
-			class="mr-10 select-none transition-colors navbar-link hover:text-accentColor"
+			class="navbar-link jbmono mr-10 select-none font-bold transition-colors hover:text-accentColor"
 			href="/about">about</a
 		>
 		<ThemeSwitcher />

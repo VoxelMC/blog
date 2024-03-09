@@ -1,7 +1,10 @@
 ---
-import Base from '../../layouts/Base.astro';
+import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
-const allPosts = (await getCollection('posts')).filter(post =>
+
+import Base from '../../layouts/Base.astro';
+
+const allPosts: CollectionEntry<'posts'>[] = (await getCollection('posts') as CollectionEntry<'posts'>[]).filter(post =>
     import.meta.env.DEV ? true : !post.data.devOnly
 );
 const tags = [...new Set(allPosts.map(post => post.data.tags).flat())];
@@ -20,11 +23,11 @@ tags.sort();
         >Back to posts</a
     >
 
-    <div class="mt-4 flex flex-wrap gap-5">
+    <div class="mt-4 flex flex-wrap gap-x-5 gap-y-4">
         {
             tags.map(tag => (
                 <a
-                    class="inline-block text-lg text-lightModeText underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+                    class="jbmono text-base inline-block bg-accentColor px-2 rounded-lg rounded-tl-none text-darkModeText dark:!text-lightModeText transition-colors dark:hover:!text-darkModeText hover:!text-lightModeText w500:text-sm"
                     href={`/tags/${tag}`}
                 >
                     #{tag}

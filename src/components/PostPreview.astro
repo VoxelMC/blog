@@ -17,14 +17,15 @@ const parsedDate = new Date(pubDate);
 const month = parsedDate.toLocaleString('default', { month: 'long' });
 const year = parsedDate.getFullYear();
 const prettyDescription = description.endsWith(".") ? description : description + ".";
+// console.log(`${title}-${pubDate}`.toLowerCase().replaceAll(" ", ""))
 ---
 
 <div id={prettyTitle} class={`mb-10 preview-card time-${month}-${year} flex flex-row last:mb-0`} data-time={`${month}-${year}`}>
 	<div class="-ml-5 mr-4 w-1 bg-accentColor preview-card-bar opacity-100"></div>
-	<div class="">
+	<div>
 		<div class="w-max">
-			<a class="group text-accentColor duration-200 preview-title-link" href={url}>
-				<h2 class="text-2xl font-medium w500:text-lg">{title} {dev && <div class="inline align-super text-sm text-darkModeText font-mono bg-blue-500 p-1 rounded">Dev</div>}</h2>
+			<a class="group text-accentColor duration-200 preview-title-link" data-astro-history='push' href={url}>
+				<h2 transition:name={`${title}`.toLowerCase().replaceAll(/ |[^a-zA-Z]/g, "") + '-title'}  class="text-2xl font-medium w500:text-lg">{title} {dev && (<div class="inline align-super text-sm text-darkModeText font-mono bg-blue-500 p-1 rounded">Dev</div>)}</h2>
 				<span
 					class="relative bottom-0.5 block h-0.5 max-w-0 bg-accentColor transition-all duration-300 group-hover:max-w-full"
 				></span>
@@ -32,12 +33,17 @@ const prettyDescription = description.endsWith(".") ? description : description 
 		</div>
 		<p
 			class="mb-3 mt-1 leading-relaxed tracking-wide w500:text-sm text-sm w500:leading-[2.2]"
+			transition:name={`${title}`.toLowerCase().replaceAll(/ |[^a-zA-Z]/g, "") + '-description'}
 		>
 			<i class="ri-quill-pen-fill ri-lg"></i> {prettyDescription}
 		</p>
 		<div class="flex w-max items-center">
 			<p class="text-sm leading-5 tracking-wide w500:text-xs">
-				<i class="ri-calendar-fill ri-lg"></i> {parsedDate.toDateString().replace(' ', ', ')} | {
+				<i class="ri-calendar-fill ri-lg mr-1.5"></i><span
+					transition:name={`${title}`
+						.toLowerCase()
+						.replaceAll(/ |[^a-zA-Z]/g, '') + '-date'}
+					>{parsedDate.toDateString().replace(' ', ', ')}</span> | <i class="ri-price-tag-3-fill ml-1 mr-2"></i>{
 					tags.map(tag => (
 						<a class="hover:text-accentColor hover:opacity-100 underline mr-1.5 transition-colors" href=`/tags/${tag}`>#{tag}</a>
 					))

@@ -20,20 +20,28 @@ a:has(.anchor-link) {
 	@apply no-underline;
 }
 
-#table-of-contents + ul > li > a {
+#table-of-contents + ol > li a {
 	@apply text-lightModeText underline !transition-colors hover:!text-accentColor dark:text-darkModeText;
 }
 
-#table-of-contents + ul ul {
+#table-of-contents + ol ol {
 	@apply my-0;
 }
 
-.prose :not(li) > a:not(:has(i)) {
+.prose :not(li, mark) > a:not(:has(i)) {
 	@apply !text-accentColor transition-colors hover:!text-lightModeText dark:hover:!text-darkModeText;
 }
 
 .prose abbr {
 	@apply cursor-default decoration-accentColor decoration-dashed decoration-2;
+}
+
+.prose mark a {
+	@apply !text-darkModeText;
+}
+
+.prose mark:has(a) {
+	@apply hover:bg-opacity-70;
 }
 
 .prose abbr:has(> mark) {
@@ -56,7 +64,9 @@ a:has(.anchor-link) {
 	@apply block ml-auto;
 }
 
-.prose 
+.prose figurecaption {
+	@apply text-sm mt-px italic;
+}
 
 .anchor-link {
 	@apply my-auto text-accentColor !no-underline opacity-0;

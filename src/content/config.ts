@@ -8,7 +8,7 @@
 // 1. Import utilities from `astro:content`
 import { z, defineCollection } from 'astro:content';
 export interface PostFrontmatter {
-    layout: string;
+    // layout: string;
     title: string;
     description: string;
     pubDate: string;
@@ -20,7 +20,7 @@ export interface PostFrontmatter {
 const postCollection = defineCollection({
     type: 'content', // v2.5.0 and later
     schema: z.object({
-        layout: z.string().default('../../layouts/BlogPost.astro'),
+        // layout: z.string().default('../../../layouts/BlogPost.astro'),
         title: z.string(),
         description: z.string(),
         pubDate: z.string(),
