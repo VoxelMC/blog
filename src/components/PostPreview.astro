@@ -17,7 +17,7 @@ const parsedDate = new Date(pubDate);
 const month = parsedDate.toLocaleString('default', { month: 'long' });
 const year = parsedDate.getFullYear();
 const prettyDescription = description.endsWith(".") ? description : description + ".";
-console.log(`${title}-${pubDate}`.toLowerCase().replaceAll(" ", ""))
+// console.log(`${title}-${pubDate}`.toLowerCase().replaceAll(" ", ""))
 ---
 
 <div id={prettyTitle} class={`mb-10 preview-card time-${month}-${year} flex flex-row last:mb-0`} data-time={`${month}-${year}`}>
