@@ -32,7 +32,7 @@ why, and the how of NMR spectroscopy!
 The goal of NMR is to analyze a sample. Usually, this sample is dissolved in an
 NMR inactive solvent, and placed in an NMR tube.
 
-/_ Picture of NMR tube _/
+{/*/_ Picture of NMR tube _/*/}
 
 Solid-state NMR, where a pure crystalline sample is analyzed without solvent is
 also possible. Also, an MRI machine in a hospital is just an NMR
@@ -43,7 +43,7 @@ instrument---making the PATIENT the SAMPLE!
 NMR relies on a few basic principles that are fundamental to physics and
 chemistry.
 
-### The Nuclear
+### [N]uclear...
 
 Every "thing" in the universe is made up of atoms. These atoms can have
 different properties, but they are all similar in their construction. They are
@@ -65,7 +65,7 @@ With that in mind, you can measure any organic molecule!
 > NMR measures the presence of NMR active nuclei which are those with an odd
 > number of particles in its nucleus.
 
-### The Magnetic
+### ...[M]agnetic...
 
 So, now you have a molecule with a bunch of NMR active atoms. Now what? Well,
 **you put them into a really strong magnetic field, of course!**
@@ -97,7 +97,7 @@ not the Y axis -- is the vertical one in NMR.
 > (β) the field lines. The population difference between the two states leads to
 > bulk magnetization along the +Z.
 
-### The Resonance
+### ...[R]esonance
 
 A nucleus with spin also <mark>precesses</mark>.
 [This YouTube video](https://youtu.be/7aRKAXD4dAg?si=rK2Jx5HRlFPhpFDm&t=58)
@@ -115,8 +115,7 @@ This precession occurs at an angular frequency (the frequency of one full
 rotation) which is characteristic for a specific nucleus at a specific magnetic
 field strength. This angular frequency of precession is called the <mark>Larmor
 frequency</mark>.
-
-// More here about resonance and larmor when I learn more.
+{/*// More here about resonance and larmor when I learn more.*/}
 
 ## Level 3: The Acquisition
 
@@ -139,8 +138,8 @@ current in a coil of wire. Though not entirely accurate, you can imagine this as
 spinning top. The top will start to wobble, then try to return back to its original position --
 all while still spinning.
 
-_There is more information about **pulse sequences** in [this post](/posts/nmr-pulse-sequences). 
-This post just covers the basic <sup>1</sup>H sequence for now._
+<p class="text-center">_There is more information about **pulse sequences** in [this post](/posts/nmr-pulse-sequences).  
+This post just covers the basic <sup>1</sup>H sequence for now._</p>
 
 ### The 90&deg; Pulse
 
@@ -166,12 +165,12 @@ of all the signals. Imagine adding two sine waves together. **This is important 
 
 <figure id='fig-2' class="mx-auto block w-fit">
 	<Image src={addedSines} alt="An unprocessed free-induction-decay spectrum." />
-	<figurecaption>Figure 2. Two sine waves (blue & green) added together (red wave).</figurecaption>
+	<figurecaption>Figure 2. Two sine waves (blue & green) added together to make a compound waveform (red wave).</figurecaption>
 </figure>
 
 ### Inter-pulse Evolution
 
-Evolution describes the change of atoms **between** events such as pulsees. The time
+Evolution describes the change of atoms **between** events such as pulses. The time
 between pulses in an experiment can be the difference between having a signal and
 not! Without getting into TOO much detail, there are two major types of evolution.
 The first is <mark>chemical shift evolution</mark> and the second is
@@ -268,7 +267,7 @@ There are two relaxation pathways that cause nuclei to accelerate their relaxati
 #### The <mark>T1</mark> Pathway 
 
 AKA the spin-lattice relaxation pathway -- occurs when protons rotate in relation to a <sup>13</sup>C atom as the
-molecule tumbles. If the tumbling occurs near the Larmor frequency, this induces unwanted `α -> β` or `β -> α`
+molecule tumbles. If the tumbling occurs near the Larmor frequency, this induces unwanted `α --> β` or `β --> α`
 transitions and returning to the ground state quicker. This is actually a physical phenomenon!
 
 This type of relaxation occurs mostly with medium-sized molecules (around 1000 Da).
@@ -282,6 +281,7 @@ Moreover, molecules with π-bonding have a magnetic field. If these molecules tu
 the change in local magnetic field induces field heterogeneity within the sample. However, this doesn't occur for quickly tumbling
 molecules, as the field averages out during the acquisition window.
 
+{/*
 ### The Product Operator Formalism
 
 WIP!
@@ -289,10 +289,29 @@ WIP!
 ### NMR Anecdotes
 
 WIP!
+*/}
 
 ### Decoupling
 
-WIP!
+The idea of decoupling is quite simple. However, I will first go over what coupling is so I can explain how to remove it!
+
+Spin-spin J-coupling occurs because the local magnetic field produced by one proton can affect the Larmor 
+frequency of a neighbouring proton. Since each proton can be either <code>&alpha;</code> or <code>&beta;</code>, the following systems are possible: 
+<code>&alpha;&alpha;</code>, <code>&alpha;&beta;</code>, <code>&beta;&alpha;</code>, or <code>&beta;&beta;</code>. For the sake of example, we know that proton A is spin <code>&alpha;</code>. 
+On its own, it has a Larmor frequency of &lambda;. If its neighbour (proton B) is spin <code>&alpha;</code> (meaning that it is aligned WITH
+<code>B<sub>0</sub></code>) it has an _**additive**_ effect on the local magnetic field. This means that the magnetic field at proton A is **higher**,
+increasing its Larmor frequency, and thus, its chemical shift. Moreover, the opposite is (almost) equally as likely, where proton B is
+spin <code>&beta;</code>. This means that the field would be _**subtracted**_ from, as it is aligned AGAINST <code>B<sub>0</sub></code> -- equally subtracting from 
+proton A's chemical shift. 
+
+**In the spectrum, we would see proton A's singlet split into a doublet centered at the singlet's ppm.** Furthermore, proton B would 
+exhibit the same behaviour.
+
+In the context of a <sup>13</sup>C spectrum, a detected carbon is able to couple with the protons that are attached to it. So, a methyl
+carbon would be a quartet, a methylene would be a triplet, and so on. Recall that a RF pulse at the Larmor frequency of a proton applies
+a torque to it. Now, imagine that you never turn that off! The proton would just keep going around and around, constantly flipping alphas
+to betas and betas to alphas. If we apply a carbon pulse while continually applying a proton pulse, we can average out the effect of
+coupling so that each carbon peak becomes a singlet! **This is the concept of decoupling.**
 
 
 
