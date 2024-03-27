@@ -2,17 +2,20 @@
 import config from '../config';
 import type { PostFrontmatter } from '../content/config';
 
-interface Props {
+export interface Props {
 	frontmatter?: PostFrontmatter;
 	title?: string;
 	slug?: string;
+	isPost?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { frontmatter, title, slug = '/' } = Astro.props;
+const { frontmatter, title, slug = '/', isPost = false } = Astro.props;
+
 let preformattedSlug = [...slug].reverse();
 preformattedSlug.push('/');
+
 let formattedSlug =
 	slug.startsWith('/') ? slug : preformattedSlug.reverse().join('');
 
@@ -20,6 +23,7 @@ const siteTitle =
 	frontmatter ? frontmatter.title + ' | ' + config.title
 	: title ? title + ' | ' + config.title
 	: config.title;
+
 const siteDescription = frontmatter?.description ?? config.description;
 ---
 
@@ -82,10 +86,19 @@ const siteDescription = frontmatter?.description ?? config.description;
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={siteTitle} />
 <meta property="twitter:description" content={siteDescription} />
-<meta
-	property="twitter:image"
-	content=`https://blog.trevfox.dev/posts${formattedSlug}/og.png`
-/>
+{
+	isPost ? (
+		<meta
+			property="twitter:image"
+			content=`https://blog.trevfox.dev/posts${formattedSlug}/og.png`
+		/>
+	) : (
+		<meta
+			property="twitter:image"
+			content=`https://blog.trevfox.dev/index.og.png`
+		/>
+	)
+}
 <meta property="twitter:image:width" content="800" />
 <meta property="twitter:image:height" content="400" />
 
