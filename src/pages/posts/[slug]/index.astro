@@ -13,14 +13,18 @@ export async function getStaticPaths() {
 }
 
 export interface Props {
-	entry: CollectionEntry<'posts'>
+    entry: CollectionEntry<'posts'>;
 }
 
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await entry.render();
 ---
 
-<BlogPost slug={entry.slug} frontmatter={entry.data}>
+<BlogPost
+    slug={entry.slug}
+    frontmatter={entry.data}
+    remarkFrontmatter={remarkPluginFrontmatter}
+>
     <Content />
 </BlogPost>

@@ -1,0 +1,94 @@
+---
+title: 'SynBio and Standardization'
+description:
+    'Synthetic Biology needs standards. What have we done so far, and what can
+    we learn?'
+pubDate: 'Oct 28, 2024'
+tags: ['synbio', 'standards', 'review', 'meta-engineering']
+devOnly: true
+---
+
+## Table of Contents
+
+## Introduction
+
+If you are reading this, I am inclined to assume you already know a bit about
+synthetic biology (SynBio). By a bit, I mean that you are aware how centred the
+field is around creating and adapting standardized approaches to solve problems.
+For example, genetic parts are to synbio as nuts and bolts are to a mechanic.
+
+    _There are some standards already such as metric and imperial, and they all do a
+    job. However, once you start working with one system, it's hard to justify
+    working with the other._
+
+I know of labs which still use restriction-ligation using Type-II enzymes. It's
+not terrible, and in fact, yields results. But it begs the question; why? Why is
+it so hard to adopt new standards? Is synbio evolving too fast? If so, should we
+put a pause on standardization and focus more on implementation?
+
+There are many questions, many of which I will _try_ to answer in this article.
+So, if you would please, **join me, and embark on this journey of
+meta-engineering synthetic biology.**
+
+## What do we know already?
+
+To find out what makes a standard, it is important to understand what we know
+already. On whose shoulders does synbio stand? Moreover, what _kind_ of
+standardization exists? What kinds does the field really need? For this article,
+I will focus on assessing needs for wet lab practices. However, I will touch on
+the needs of data reporting in a future article.
+
+### DNA standards
+
+In order to treat sequences of DNA as "mechanical" parts, we must formalize how
+we describe and use them in the laboratory. A prominent example of this is the
+[BioBrick standard](https://pubmed.ncbi.nlm.nih.gov/15815621/) of 2002
+(strangely enough, the year in which I was born). This standard allowed
+researchers to use a common language to describe and use DNA parts. Moreover,
+the standard allowed for _idempotent_ transformation of DNA, such that parts may
+be stitched together without losing their function.
+
+In the years following the BioBrick standard, many other standards have been
+proposed. One of these is the
+[MoClo standard](https://www.addgene.org/cloning/moclo/) which itself is built
+on the Golden Gate Cloning standard. This is the method which my iGEM teams used
+in 2022 and 2023.
+
+These processes are very useful. However, they are quite complex to use, as all
+source DNA must be "domesticated" to fit the standard. This becomes a particular
+problem when performing functional metagenomics. Untargeted modification to DNA
+can arise a multitude of problems, such as premature termination of sequences --
+introducing loss-of-function mutations. Moreover, genes might need to be
+domesticated in multiple different ways to allow for a _truly_ modular approach.
+
+> Imagine a enzyme which can modify the terminal ends of any DNA with a specific
+> sequence. Would that solve the problem of prerequisite domestication?
+
+> [!?]- **Aside: Could such an enzyme exist?** \
+> There are enzymes which can modify DNA in this way, such as telomerase. Perhaps
+> someone can engineer a telomerase-like enzyme which can add specific sequences
+> to the ends of DNA using some sort of guide RNA. Throughput for days!
+>
+> Imagine a world where you could take a gene from a metagenome, and use it in
+> your chassis without any modification. This is the dream of many synthetic
+> biologists, and it is a dream which is not yet realized.
+
+### Chassis engineering techniques
+
+Chassis engineering is a field which is still in its infancy. However, it is
+becoming increasingly important as we move towards more complex systems.
+
+Why is chassis engineering so important? Since I heard of it years ago, I have
+been fascinated by bioorthogonal chemistry. This is the study of chemical
+reactions which can occur in a biological system without interfering with
+natural metabolism. This is exemplified by the recent work of Click Chemistry,
+which has been demonstratably used in living systems. Now, synthetic biology
+inherently involves the use of metabolites within the cell -- so it is difficult
+to say that it's truly orthogonal. However, we can engineer chassis to withstand
+diversion of its carbon flux, or even adapt to it -- as though it would give its
+own metabolites for the cause of humans. Perhaps: biorouting protocols?
+
+In terms of standardization of chassis engineering, <mark>there is no
+precedent</mark>. For now...
+
+### Parts documentation

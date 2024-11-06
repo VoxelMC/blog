@@ -1,79 +1,84 @@
 mark {
-	@apply bg-accentColor px-1 py-0.5 font-bold text-darkModeText text-sm;
+    @apply bg-accentColor px-1 py-0.5 text-sm font-bold text-darkModeText;
+    box-decoration-break: clone;
 }
 
 code {
-	@apply !font-mono;
-	font-variant-ligatures: common-ligatures;
-	font-feature-settings: "calt", "zero", "ss20" !important;
+    @apply !font-mono;
+    font-variant-ligatures: common-ligatures;
+    font-feature-settings: 'calt', 'zero', 'ss20' !important;
 }
 
 .expressive-code {
-	@apply my-8
+    @apply my-8;
 }
 
 .expressive-code code {
-	@apply !bg-transparent;
+    @apply !bg-transparent;
 }
 
 a:has(.anchor-link) {
-	@apply no-underline;
+    @apply no-underline;
 }
 
 #table-of-contents + ol > li a {
-	@apply text-lightModeText underline !transition-colors hover:!text-accentColor dark:text-darkModeText;
+    @apply text-lightModeText underline !transition-colors hover:!text-accentColor dark:text-darkModeText;
 }
 
 #table-of-contents + ol ol {
-	@apply my-0;
+    @apply my-0;
+}
+
+.prose p {
+    @apply font-light;
 }
 
 .prose :not(li, mark) > a:not(:has(i)) {
-	@apply !text-accentColor transition-colors hover:!text-lightModeText dark:hover:!text-darkModeText;
+    @apply !text-accentColor transition-colors hover:!text-lightModeText dark:hover:!text-darkModeText;
 }
 
 .prose abbr {
-	@apply cursor-default decoration-accentColor decoration-dashed decoration-2;
+    @apply cursor-default decoration-accentColor decoration-dashed decoration-2;
 }
 
 .prose mark a {
-	@apply !text-darkModeText;
+    @apply !text-darkModeText;
 }
 
 .prose mark:has(a) {
-	@apply hover:bg-opacity-70;
+    @apply hover:bg-opacity-70;
 }
 
 .prose abbr:has(> mark) {
-	@apply decoration-darkModeText;
+    @apply decoration-darkModeText;
 }
 
 .prose kbd {
-	@apply border border-lightModeText dark:border-darkModeText;
+    @apply border border-lightModeText dark:border-darkModeText;
 }
 
 .prose blockquote:has(+ cite) {
-	@apply mb-0;
+    @apply mb-0;
 }
 
 .prose blockquote:has(+ cite) p {
-	@apply mb-0;
+    @apply mb-0;
 }
 
 .prose blockquote + cite {
-	@apply block ml-auto;
+    @apply ml-auto block;
 }
 
 .prose figurecaption {
-	@apply text-sm mt-px italic;
+    @apply mt-px text-sm italic;
 }
 
 .anchor-link {
-	@apply my-auto text-accentColor !no-underline opacity-0;
+    @apply my-auto text-accentColor !no-underline opacity-0;
 }
 
 :is(h1, h2, h3, h4, h5, h6):has(a > .anchor-link):hover .anchor-link {
-	@apply opacity-100;
+    @apply opacity-100;
 }
 
 /* @media (prefers-reduced-motion: reduce) { */
@@ -87,9 +92,9 @@ a:has(.anchor-link) {
 /* } */
 
 .task-list-item input {
-	@apply my-0 mr-2;
+    @apply my-0 mr-2;
 }
 
 .task-list-item {
-	list-style-type: none;
+    list-style-type: none;
 }

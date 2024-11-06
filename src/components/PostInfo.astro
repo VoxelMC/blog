@@ -1,51 +1,58 @@
 ---
-const { title, date, tags, description } = Astro.props;
+const { title, date, tags, description, readingTime } = Astro.props;
 
 const parsedDate = new Date(date);
 // const month = parsedDate.toLocaleString('default', { month: 'long' });
 // const year = parsedDate.getFullYear();
 const prettyDescription =
-	description.endsWith('.') ? description : description + '.';
+    description.endsWith('.') ? description : description + '.';
 ---
 
-<div class="mb-5">
-	<h2
-		transition:name={`${title}`
-			.toLowerCase()
-			.replaceAll(/ |[^a-zA-Z]/g, '') + '-title'}
-		class="my-0 w-max text-4xl"
-	>
-		{title}
-	</h2>
-	<div
-		transition:name={`${title}`
-			.toLowerCase()
-			.replaceAll(/ |[^a-zA-Z]/g, '') + '-description'}
-		class="mt-2 italic"
-		>{prettyDescription}
-	</div>
-	<div
-		class="flex items-center justify-between w500:flex-col w500:items-start"
-	>
-		<div class="flex items-center py-4">
-			<i class="ri-calendar-fill ri-lg mr-1.5 ri-lg"></i>
-			<p
-				class="text-sm leadin-5 tracking-wide my-0"
-				transition:name={`${title}`
-					.toLowerCase()
-					.replaceAll(/ |[^a-zA-Z]/g, '') + '-date'}
-			>
-				{parsedDate.toDateString().replace(' ', ', ')}
-			</p>
-		</div>
-		<div class="flex items-center">
-			{
-				tags.map((tag: string) => (
-					<a class="ml-5 text-sm first:ml-0" href={`/tags/${tag}`}>
-						#{tag}
-					</a>
-				))
-			}
-		</div>
-	</div>
+<div class="mb-5 handheld:w-full handheld:max-w-full">
+    <h2
+        transition:name={`${title}`
+            .toLowerCase()
+            .replaceAll(/ |[^a-zA-Z]/g, '') + '-title'}
+        class="my-0 w-max text-4xl"
+    >
+        {title}
+    </h2>
+    <div
+        transition:name={`${title}`
+            .toLowerCase()
+            .replaceAll(/ |[^a-zA-Z]/g, '') + '-description'}
+        class="mt-2 text-wrap italic"
+    >
+        {prettyDescription}
+    </div>
+    <div
+        class="flex items-center justify-between w500:flex-col w500:items-start"
+    >
+        <div class="flex items-center py-4">
+            <i
+                class="ri-calendar-fill ri-lg mr-1.5"
+                transition:name=`${title}-calendar`></i>
+            <p
+                class="leadin-5 my-0 text-sm tracking-wide"
+                transition:name={`${title}`
+                    .toLowerCase()
+                    .replaceAll(/ |[^a-zA-Z]/g, '') + '-date'}
+            >
+                {parsedDate.toDateString().replace(' ', ', ')}
+            </p>
+            <i class="ri-timer-line ri-lg mx-1.5 ml-2"></i>
+            <p class="leadin-5 my-0 text-sm tracking-wide">
+                {Math.round(readingTime * 10) / 10} mins
+            </p>
+        </div>
+        <div class="flex items-center">
+            {
+                tags.map((tag: string) => (
+                    <a class="ml-2 text-sm first:ml-0" href={`/tags/${tag}`}>
+                        #{tag}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
 </div>

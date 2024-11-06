@@ -18,53 +18,53 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 import FontImport from '../components/FontImport.astro';
 
 export interface Props {
-	frontmatter?: PostFrontmatter;
-	title?: string;
-	slug?: string;
-	isPost?: boolean;
+    frontmatter?: PostFrontmatter;
+    title?: string;
+    slug?: string;
+    isPost?: boolean;
 }
 const { frontmatter, title, slug, isPost = false } = Astro.props;
 ---
 
 <html lang={config.lang}>
-	<head>
-		<ViewTransitions />
-		<BaseHead {slug} {frontmatter} title={title} {isPost} />
-		<SpeedInsights />
-		<FontImport />
-	</head>
-	<body
-		id="body"
-		style="padding-left: calc(100vw - 100%);"
-		class="data-[loaded=true]:duration-400 mx-auto max-w-[77ch] overflow-y-scroll bg-lightModeBg scrollbar scrollbar-thumb-accentColor data-[loaded=true]:transition-colors dark:bg-darkModeBg dark:text-darkModeText"
-		data-loaded="false"
-	>
-		<Nav />
-		<main
-			class="min-h-[calc(100dvh-90px-70px)] px-2 py-10 w500:min-h-[calc(100dvh-110px-70px)] w500:px-4"
-		>
-			<slot />
-		</main>
-		<Footer />
-		<script is:inline defer lang="js">
-			// history.pushState('', document.title, window.location.pathname);
-			document.addEventListener('astro:page-load', () => {
-				document.getElementById('body').dataset.loaded = 'true';
-				document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-					anchor.addEventListener('click', function (e) {
-						e.preventDefault();
-						history.pushState({}, '', anchor.getAttribute('href'));
-						document
-							.querySelector(anchor.getAttribute('href'))
-							.scrollIntoView({
-								behavior: 'smooth',
-							});
-					});
-				});
-			});
-			document.addEventListener('DOMContentLoaded', () => {
-				document.getElementById('body').dataset.loaded = 'true';
-			});
-		</script>
-	</body>
+    <head>
+        <ViewTransitions />
+        <BaseHead {slug} {frontmatter} title={title} {isPost} />
+        <SpeedInsights />
+        <!-- <FontImport /> -->
+    </head>
+    <body
+        id="body"
+        style="padding-left: calc(100vw - 100%);"
+        class="data-[loaded=true]:duration-400 dark:font-ight mx-auto max-w-[77ch] overflow-y-scroll bg-lightModeBg scrollbar scrollbar-thumb-accentColor data-[loaded=true]:transition-colors dark:bg-darkModeBg dark:text-darkModeText"
+        data-loaded="false"
+    >
+        <Nav />
+        <main
+            class="min-h-[calc(100dvh-90px-70px)] px-2 py-10 handheld:mx-auto handheld:w-11/12 w500:min-h-[calc(100dvh-110px-70px)] w500:px-4"
+        >
+            <slot />
+        </main>
+        <Footer />
+        <script is:inline defer lang="js">
+            // history.pushState('', document.title, window.location.pathname);
+            document.addEventListener('astro:page-load', () => {
+                document.getElementById('body').dataset.loaded = 'true';
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        history.pushState({}, '', anchor.getAttribute('href'));
+                        document
+                            .querySelector(anchor.getAttribute('href'))
+                            .scrollIntoView({
+                                behavior: 'smooth',
+                            });
+                    });
+                });
+            });
+            document.addEventListener('DOMContentLoaded', () => {
+                document.getElementById('body').dataset.loaded = 'true';
+            });
+        </script>
+    </body>
 </html>

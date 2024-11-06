@@ -5,9 +5,10 @@ export interface Props {
 	description: string;
 	pubDate: string;
 	tags: string[];
+	readingTime: number;
 	dev?: boolean;
 }
-const { url, title, description, pubDate, tags, dev } = Astro.props;
+const { url, title, description, pubDate, tags, dev, readingTime } = Astro.props;
 const prettyTitle = title
 	.toLowerCase()
 	.replaceAll(' ', 'abcda')
@@ -20,35 +21,38 @@ const prettyDescription = description.endsWith(".") ? description : description 
 // console.log(`${title}-${pubDate}`.toLowerCase().replaceAll(" ", ""))
 ---
 
-<div id={prettyTitle} class={`mb-10 preview-card time-${month}-${year} flex flex-row last:mb-0`} data-time={`${month}-${year}`}>
+<div id={prettyTitle} class={`mb-5 preview-card time-${month}-${year} flex flex-row last:mb-0 handheld:max-w-full`} data-time={`${month}-${year}`}>
 	<div class="-ml-5 mr-4 w-1 bg-accentColor preview-card-bar opacity-100"></div>
-	<div>
+	<div class="handheld:max-w-full">
 		<div class="w-max">
 			<a class="group text-accentColor duration-200 preview-title-link" data-astro-history='push' href={url}>
-				<h2 transition:name={`${title}`.toLowerCase().replaceAll(/ |[^a-zA-Z]/g, "") + '-title'}  class="text-2xl font-medium w500:text-lg">{title} {dev && (<div class="inline align-super text-sm text-darkModeText font-mono bg-blue-500 p-1 rounded">Dev</div>)}</h2>
+				<h2 transition:name={`${title}`.toLowerCase().replaceAll(/ |[^a-zA-Z]/g, "") + '-title'}  class="text-xl font-medium w500:text-lg">{title} {dev && (<div class="inline align-super text-sm text-darkModeText font-mono bg-blue-500 p-1 rounded">Dev</div>)}</h2>
 				<span
 					class="relative bottom-0.5 block h-0.5 max-w-0 bg-accentColor transition-all duration-300 group-hover:max-w-full"
 				></span>
 			</a>
 		</div>
 		<p
-			class="mb-3 mt-1 leading-relaxed tracking-wide w500:text-sm text-sm w500:leading-[2.2]"
+			class="mb3 mt-1 leading-relaxed tracking-wide w500:text-sm text-sm w500:leading-[2.2]"
 			transition:name={`${title}`.toLowerCase().replaceAll(/ |[^a-zA-Z]/g, "") + '-description'}
 		>
-			<i class="ri-quill-pen-fill ri-lg"></i> {prettyDescription}
+			<!-- <i class="ri-quill-pen-fill ri-lg"></i> {prettyDescription} -->
 		</p>
-		<div class="flex w-max items-center">
-			<p class="text-sm leading-5 tracking-wide w500:text-xs">
-				<i class="ri-calendar-fill ri-lg mr-1.5"></i><span
+		<div class="flex w-max items-center flex-wrap handheld:max-w-full">
+			<div class="text-sm leading-5 tracking-wide w500:text-xs text-wrap flex flex-wrap handheld:max-w-full">
+				<i class="ri-calendar-fill ri-lg mr-1.5"
+					transition:name=`${title}-calendar`></i><span
 					transition:name={`${title}`
 						.toLowerCase()
 						.replaceAll(/ |[^a-zA-Z]/g, '') + '-date'}
-					>{parsedDate.toDateString().replace(' ', ', ')}</span> | <i class="ri-price-tag-3-fill ml-1 mr-2"></i>{
+				>{parsedDate.toDateString().replace(' ', ', ')}</span>
+				<span class="mr-1.5" ><i class="ri-timer-line ri-lg ml-1 mr-1.5" ></i>{Math.round(readingTime * 10) / 10} mins</span> 
+				<span class="mr-1.5">|</span> <div><i class="ri-price-tag-3-fill mr-2 ri-lg"></i>{
 					tags.map(tag => (
 						<a class="hover:text-accentColor hover:opacity-100 underline mr-1.5 transition-colors" href=`/tags/${tag}`>#{tag}</a>
 					))
-				}
-			</p>
+					}</div>
+			</div>
 		</div>
 	</div>
 </div>
