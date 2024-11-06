@@ -7,26 +7,28 @@ import MonthDivider from '../../components/MonthDivider.astro';
 type Post = CollectionEntry<'posts'>;
 
 export async function getStaticPaths() {
-	const allPosts: Post[] = await getCollection('posts');
-	const uniqueTags = [
-		...new Set(allPosts.map(post => post.data.tags).flat()),
-	];
+    const allPosts: Post[] = await getCollection('posts');
+    const uniqueTags = [
+        ...new Set(allPosts.map(post => post.data.tags).flat()),
+    ];
 
-	return uniqueTags.map(tag => {
-		const filteredPosts = allPosts.filter(post =>
-			post.data.tags.includes(tag)
-		);
-		filteredPosts.sort(
-			(a, b) =>
-				new Date(b.data.pubDate).valueOf() -
-				new Date(a.data.pubDate).valueOf()
-		);
-		const posts: typeof filteredPosts = filteredPosts.filter(post => import.meta.env.DEV ? true : !post.data.devOnly);
-		return {
-			params: { tag },
-			props: { posts },
-		};
-	});
+    return uniqueTags.map(tag => {
+        const filteredPosts = allPosts.filter(post =>
+            post.data.tags.includes(tag)
+        );
+        filteredPosts.sort(
+            (a, b) =>
+                new Date(b.data.pubDate).valueOf() -
+                new Date(a.data.pubDate).valueOf()
+        );
+        const posts: typeof filteredPosts = filteredPosts.filter(post =>
+            import.meta.env.DEV ? true : !post.data.devOnly
+        );
+        return {
+            params: { tag },
+            props: { posts },
+        };
+    });
 }
 
 const { tag } = Astro.params;
@@ -34,35 +36,66 @@ const { posts } = Astro.props;
 ---
 
 <Base title={'#' + tag}>
-	<h2
-		class="text-3xl font-medium tracking-wide text-accentColor w500:text-lg"
-	>
-		Posts tagged with <a
-			href="/tags/"
-			class="text-lightModeText underline transition-colors hover:text-accentColor dark:text-darkModeText"
-			>#{tag}</a
-		>
-	</h2>
-	<a
-		href="/"
-		class="mb-10 text-sm underline transition-colors hover:text-accentColor"
-		>Back to posts</a
-	>
-	<div class="mt-10">
-		{
-			posts.map(post => (
-				<>
-					<MonthDivider date={post.data.pubDate as string} />
-					<PostPreview
-						url={'/posts/' + post.slug}
-						title={post.data.title}
-						description={post.data.description}
-						pubDate={post.data.pubDate}
-						tags={post.data.tags}
-						dev={post.data.devOnly}
-					/>
-				</>
-			))
-		}
-	</div>
+    <h2
+        class="text-3xl font-medium tracking-wide text-accentColor w500:text-lg"
+    >
+        Posts tagged with <a
+            href="/tags/"
+            class="text-lightModeText underline transition-colors hover:text-accentColor dark:text-darkModeText"
+            >#{tag}</a
+        >
+    </h2>
+    <a
+        href="/"
+        class="mb-10 text-sm underline transition-colors hover:text-accentColor"
+        >Back to posts</a
+    >
+    <div class="mt-10">
+        {
+            posts.map(async (post, i, array) => {
+                const { remarkPluginFrontmatter } = await post.render();
+                let shouldAddDivide;
+                if (!!array[i - 1]) {
+                    const currentDate = new Date(post.data.pubDate).getMonth();
+                    const nextDate = new Date(
+                        array[i - 1].data.pubDate
+                    ).getMonth();
+                    shouldAddDivide = currentDate !== nextDate;
+                } else {
+                    shouldAddDivide = true;
+                }
+
+                return (
+                    <>
+                        {shouldAddDivide && (
+                            <MonthDivider date={post.data.pubDate as string} />
+                        )}
+                        <PostPreview
+                            url={'/posts/' + post.slug}
+                            title={post.data.title}
+                            description={post.data.description}
+                            pubDate={post.data.pubDate}
+                            tags={post.data.tags}
+                            dev={post.data.devOnly}
+                            readingTime={remarkPluginFrontmatter.readingTime}
+                        />
+                    </>
+                );
+            })
+        }
+    </div>
 </Base>
+
+<!-- ( -->
+<!-- 		<> -->
+<!-- 			<MonthDivider date={post.data.pubDate as string} /> -->
+<!-- 			<PostPreview -->
+<!-- 				url={'/posts/' + post.slug} -->
+<!-- 				title={post.data.title} -->
+<!-- 				description={post.data.description} -->
+<!-- 				pubDate={post.data.pubDate} -->
+<!-- 				tags={post.data.tags} -->
+<!-- 				dev={post.data.devOnly} -->
+<!-- 			/> -->
+<!-- 		</> -->
+<!-- 	)) -->
