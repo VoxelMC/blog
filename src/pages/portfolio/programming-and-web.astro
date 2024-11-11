@@ -1,0 +1,76 @@
+---
+import Base from '@baselayout';
+---
+
+<Base title="About">
+    <h2
+        class="text-3xl font-medium tracking-wide text-accentColor w500:text-lg"
+    >
+        <a
+            href="/"
+            class="underline transition-colors hover:text-lightModeText dark:hover:text-darkModeText"
+            >~</a
+        >/<a
+            href="/portfolio"
+            class="underline transition-colors hover:text-lightModeText dark:hover:text-darkModeText"
+            >portfolio</a
+        >/programming-and-web
+    </h2>
+
+    <div
+        class="prose mt-4 text-left tracking-wide text-lightModeText prose-code:rounded-sm prose-code:bg-lightCodeBg prose-code:px-1 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none dark:text-darkModeText prose-code:dark:bg-darkCodeBg w500:text-sm w500:leading-[2.2]"
+    >
+        <p class="mb-4">
+            Hello, I am Trevor Fox. I have completed my Bachelor of Science
+            degree in Biochemistry and Molecular Biology from the University of
+            British Columbia. In my free time, I enjoy web development and
+            programming.
+        </p>
+        <p class="mb-4">
+            If you are interested, I would be happy to share my portfolio
+            projects with you. You may view or download them below.
+        </p>
+        <h2 class="mb-2 text-accentColor">Programming</h2>
+        <ol class="text-white">
+            <li>
+                <a href="https://github.com/VoxelMC" target="_blank"
+                    >GitHub Profile</a
+                ><i class="ri-github-fill ri-lg ml-1"></i><i
+                    class="ri-external-link-fill ri-lg ml-1"></i>
+            </li>
+            <li>
+                <a href="https://github.com/VoxelMC/dnalg-gleam" target="_blank"
+                    >GitHub - DNAlg: the command-line DNA editor</a
+                ><i class="ri-github-fill ri-lg ml-1"></i><i
+                    class="ri-external-link-fill ri-lg ml-1"></i>
+            </li>
+        </ol>
+        <h2 class="mb-2 text-accentColor">Website</h2>
+        <ol class="text-white">
+            <li>
+                <a href="https://nambi.ca" target="_blank"
+                    >Nambi - A Bioluminescent Startup</a
+                ><i class="ri-external-link-fill ri-lg ml-1"></i>
+            </li>
+            <li>
+                <a href="https://2022.igem.wiki/ubc-okanagan" target="_blank"
+                    >2022 iGEM Project Wiki - Life Bulb</a
+                ><i class="ri-external-link-fill ri-lg ml-1"></i>
+            </li>
+            <li>
+                <a href="https://2023.igem.wiki/ubc-okanagan" target="_blank"
+                    >2023 iGEM Project Wiki - Immunibee</a
+                ><i class="ri-external-link-fill ri-lg ml-1"></i>
+            </li>
+            <li>
+                <a href="/" target="_blank">This One!</a>
+            </li>
+        </ol>
+    </div>
+</Base>
+
+<style>
+    ol li a {
+        @apply underline decoration-accentColor decoration-2 transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm;
+    }
+</style>

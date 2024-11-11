@@ -1,0 +1,41 @@
+---
+import Base from '@baselayout';
+---
+
+<Base title="About">
+    <h2
+        class="text-3xl font-medium tracking-wide text-accentColor w500:text-lg"
+    >
+        <a
+            href="/"
+            class="underline transition-colors hover:text-lightModeText dark:hover:text-darkModeText"
+            >~</a
+        >/portfolio
+    </h2>
+
+    <div
+        class="prose mt-4 text-left tracking-wide text-lightModeText prose-code:rounded-sm prose-code:bg-lightCodeBg prose-code:px-1 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none dark:text-darkModeText prose-code:dark:bg-darkCodeBg w500:text-sm w500:leading-[2.2]"
+    >
+        <p class="mb-4">
+            If you are interested, I would be happy to share my portfolio
+            projects with you. These pages are designed to be standalone, so
+            excuse my incessant self-introductions!
+        </p>
+        <h2 class="mb-2 text-accentColor">My Portfolios</h2>
+        <ol class="text-white">
+            <li>
+                <a
+                    class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+                    href="/portfolio/metabolomics/">Metabolomics</a
+                ><i class="ri-arrow-right-line ri-lg ml-1 text-accentColor"></i>
+            </li>
+            <li>
+                <a
+                    class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+                    href="/portfolio/programming-and-web/"
+                    >Programming and Web Development</a
+                ><i class="ri-arrow-right-line ri-lg ml-1 text-accentColor"></i>
+            </li>
+        </ol>
+    </div>
+</Base>

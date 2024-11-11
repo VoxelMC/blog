@@ -2,6 +2,15 @@
 	"extends": "astro/tsconfigs/strict",
 	"compilerOptions": {
 		"strictNullChecks": true,
-		"allowJs": true
+		"allowJs": true,
+		"baseUrl": ".",
+		"paths": {
+			"@components/*": ["src/components/*"],
+			"@layouts/*": ["src/layouts/*"],
+			"@baselayout": ["src/layouts/Base.astro"],
+			"@assets/*": ["src/assets/*"],
+			"@img/*": ["src/img/*"],
+			"@elements/*": ["src/components/elements/*"]
+		}
 	}
 }

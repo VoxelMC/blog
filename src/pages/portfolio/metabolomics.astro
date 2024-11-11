@@ -1,0 +1,59 @@
+---
+import Base from '@baselayout';
+---
+
+<Base title="About">
+    <h2
+        class="text-3xl font-medium tracking-wide text-accentColor w500:text-lg"
+    >
+        <a
+            href="/"
+            class="underline transition-colors hover:text-lightModeText dark:hover:text-darkModeText"
+            >~</a
+        >/<a
+            href="/portfolio"
+            class="underline transition-colors hover:text-lightModeText dark:hover:text-darkModeText"
+            >portfolio</a
+        >/metabolomics
+    </h2>
+
+    <div
+        class="prose mt-4 text-left tracking-wide text-lightModeText prose-code:rounded-sm prose-code:bg-lightCodeBg prose-code:px-1 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none dark:text-darkModeText prose-code:dark:bg-darkCodeBg w500:text-sm w500:leading-[2.2]"
+    >
+        <p class="mb-4">
+            Hello, I am Trevor Fox. I have completed my Bachelor of Science
+            degree in Biochemistry and Molecular Biology from the University of
+            British Columbia. During my studies, I engaged with metabolomics
+            researchers <a
+                class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+                href="https://chemistry.ok.ubc.ca/about/contact/susan-murch/"
+                >Dr. Susan Murch</a
+            > and <a
+                class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+                href="https://chemistry.ok.ubc.ca/about/contact/paul-shipley/"
+                >Dr. Paul Shipley</a
+            >.
+        </p>
+        <p class="mb-4">
+            If you are interested, I would be happy to share my portfolio
+            projects with you. You may view or download them below.
+        </p>
+        <h2 class="mb-2 text-accentColor">Documents</h2>
+        <ol class="text-white">
+            <li>
+                <a
+                    class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+                    href="/portfolio/metabolomics/trev_fox_portfolio.pdf"
+                    >Metabolomics Portfolio Assignment - LC-MS Metabolomics</a
+                ><i class="ri-file-pdf-2-fill ri-lg ml-1 text-red-400"></i>
+            </li>
+            <li>
+                <a
+                    class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+                    href="/portfolio/metabolomics/trev_fox_thesis.pdf"
+                    >Undergraduate Thesis - NMR Metabolomics</a
+                ><i class="ri-file-pdf-2-fill ri-lg ml-1 text-red-400"></i>
+            </li>
+        </ol>
+    </div>
+</Base>
