@@ -11,6 +11,7 @@ export default {
             fontFamily: {
                 sans: ['Rubik', ...defaultTheme.fontFamily.sans],
                 mono: ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono],
+                ptmono: ['"PT Mono"', ...defaultTheme.fontFamily.mono],
             },
             colors: {
                 // lightModeBg: '#E6E6E6', // Default
@@ -19,7 +20,7 @@ export default {
                 darkModeBg: '#1A1A1A',
                 accentColor: '#A682FF',
                 accentColorLight: '#daccff',
-                lightModeText: 'black',
+                lightModeText: 'hsl(0deg, 0%, 26%)',
                 darkModeText: 'white',
                 darkCodeBg: '#333333',
                 lightCodeBg: '#CCCCCC',

@@ -21,12 +21,20 @@ a:has(.anchor-link) {
     @apply no-underline;
 }
 
-#table-of-contents + ol > li a {
-    @apply text-lightModeText underline !transition-colors hover:!text-accentColor dark:text-darkModeText;
-}
-
-#table-of-contents + ol ol {
-    @apply my-0;
+[data-callout-body] {
+    & > ol > li:has(a) > a {
+        @apply font-semibold;
+    }
+    & ol li:not(:has(li)) {
+        /* @apply h-7; */
+        height: 30px;
+    }
+    & ol > li a {
+        @apply font-normal text-lightModeText no-underline decoration-1 !transition-colors hover:!text-accentColor dark:text-darkModeText;
+    }
+    & ol ol {
+        @apply my-0;
+    }
 }
 
 .prose p {

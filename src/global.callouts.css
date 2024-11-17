@@ -200,6 +200,21 @@ details[data-callout][open] > summary[data-callout-title]::after {
     content: 'Done';
 }
 
+[data-callout][data-callout-type='toc'] {
+    & {
+        @apply mb-8 mt-2 border-2 border-accentColor/70 bg-accentColorLight/20 dark:border-accentColor/70 dark:bg-accentColorLight/10;
+    }
+
+    & > [data-callout-title] {
+        & {
+            @apply text-accentColor;
+        }
+        &::before {
+            mask-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXRhYmxlLW9mLWNvbnRlbnRzIj48cGF0aCBkPSJNMTYgMTJIMyIvPjxwYXRoIGQ9Ik0xNiAxOEgzIi8+PHBhdGggZD0iTTE2IDZIMyIvPjxwYXRoIGQ9Ik0yMSAxMmguMDEiLz48cGF0aCBkPSJNMjEgMThoLjAxIi8+PHBhdGggZD0iTTIxIDZoLjAxIi8+PC9zdmc+');
+        }
+    }
+}
+
 [data-callout][data-callout-type='question'],
 [data-callout][data-callout-type='?'],
 [data-callout][data-callout-type='help'],
