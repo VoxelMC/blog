@@ -24,6 +24,7 @@ import PostInfo from '../components/PostInfo.astro';
             date={frontmatter.pubDate}
             tags={frontmatter.tags}
             readingTime={remarkFrontmatter.readingTime}
+			{slug}
         />
         <slot />
     </div>

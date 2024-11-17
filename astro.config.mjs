@@ -8,21 +8,25 @@ import sitemap from '@astrojs/sitemap';
 import expressiveCode from 'astro-expressive-code';
 import metaTags from 'astro-meta-tags';
 import satori from 'satori-astro';
-// import tailwindConfigViewer from 'astro-tailwind-config-viewer';
-// import vtbot from 'astro-vtbot';
+import keystatic from '@keystatic/astro';
+import react from '@astrojs/react';
 
 // Remark Rehype
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import remarkCallout from '@r4ai/remark-callout';
 import smartypants from 'remark-smartypants';
-// import remarkToc from 'remark-toc';
 import remarkToc from './remark/toc.mjs';
 import emoji from 'remark-emoji';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
 import { remarkReadingTime } from './remark/reading-time.mjs';
+import remarkFlexibleMarkers from 'remark-flexible-markers';
+// import remarkMark from 'remark-mark-plus';
+// const remarkMarkD = await import('remark-mark-plus');
+// const remarkMark = remarkMarkD.default;
+// console.log(remarkMark);
 
-import vercel from '@astrojs/vercel/static';
+import vercel from '@astrojs/vercel/serverless';
 
 /** @type {import('astro-expressive-code').AstroExpressiveCodeOptions} */
 const astroExpressiveCodeOptions = {
@@ -46,7 +50,8 @@ const astroExpressiveCodeOptions = {
 
 // https://astro.build/config
 export default defineConfig({
-    output: 'static',
+    // output: 'static',
+    output: 'hybrid',
     adapter: vercel({
         webAnalytics: {
             enabled: true,
@@ -71,6 +76,7 @@ export default defineConfig({
             remarkCallout,
             emoji,
             remarkReadingTime,
+            remarkFlexibleMarkers,
         ],
         rehypePlugins: [
             rehypeHeadingIds,
@@ -92,14 +98,11 @@ export default defineConfig({
         }),
         expressiveCode(astroExpressiveCodeOptions),
         mdx(),
-        // tailwindConfigViewer({
-        // 	configFile: './tailwind.config.ts',
-        // 	overlayMode: 'embed',
-        // }),
         metaTags(),
         sitemap(),
         satori(),
-        // vtbot(),
+        keystatic(),
+        react(),
     ],
     vite: {
         ssr: { external: ['@resvg/resvg-js'] },

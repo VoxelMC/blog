@@ -1,11 +1,13 @@
 ---
-const { title, date, tags, description, readingTime } = Astro.props;
+const { title, date, tags, description, readingTime, slug } = Astro.props;
 
 const parsedDate = new Date(date);
 // const month = parsedDate.toLocaleString('default', { month: 'long' });
 // const year = parsedDate.getFullYear();
 const prettyDescription =
     description.endsWith('.') ? description : description + '.';
+
+const dev = import.meta.env.DEV;
 ---
 
 <div class="mb-1 handheld:w-full handheld:max-w-full">
@@ -13,9 +15,20 @@ const prettyDescription =
         transition:name={`${title}`
             .toLowerCase()
             .replaceAll(/ |[^a-zA-Z]/g, '') + '-title'}
-        class="my-0 w-max text-4xl"
+        class="my-0 inline w-max text-4xl"
     >
         {title}
+        {
+            dev && (
+                <a
+                    target="_blank"
+                    href={`/keystatic/collection/posts/item/${slug}`}
+                    class="text-xs underline"
+                >
+                    edit
+                </a>
+            )
+        }
     </h2>
     <div
         transition:name={`${title}`

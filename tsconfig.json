@@ -1,16 +1,30 @@
 {
-	"extends": "astro/tsconfigs/strict",
-	"compilerOptions": {
-		"strictNullChecks": true,
-		"allowJs": true,
-		"baseUrl": ".",
-		"paths": {
-			"@components/*": ["src/components/*"],
-			"@layouts/*": ["src/layouts/*"],
-			"@baselayout": ["src/layouts/Base.astro"],
-			"@assets/*": ["src/assets/*"],
-			"@img/*": ["src/img/*"],
-			"@elements/*": ["src/components/elements/*"]
-		}
-	}
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "allowJs": true,
+    "baseUrl": "/Users/tfox/Dev/trevfox.dev/blog",
+    "paths": {
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@baselayout": [
+        "src/layouts/Base.astro"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@img/*": [
+        "src/img/*"
+      ],
+      "@elements/*": [
+        "src/components/elements/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }
