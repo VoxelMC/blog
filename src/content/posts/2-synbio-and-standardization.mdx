@@ -25,10 +25,10 @@ _There are some standards already such as metric and imperial, and they all do a
 job. However, once you start working with one system, it's hard to justify
 working with the other._
 
-I know of labs which still use restriction-ligation using Type-II enzymes. It's
-not terrible, and in fact, yields results. But it begs the question; why? Why is
-it so hard to adopt new standards? Is synbio evolving too fast? If so, should we
-put a pause on standardization and focus more on implementation?
+I know of labs which still perform restriction-ligation using Type-II enzymes.
+It's not terrible, and in fact, yields results. But it begs the question; why?
+Why is it so hard to adopt new standards? Is synbio evolving too fast? If so,
+should we put a pause on standardization and focus more on implementation?
 
 There are many questions, many of which I will _try_ to answer in this article.
 So, if you would please, **join me, and embark on this journey of
@@ -42,7 +42,7 @@ standardization exists? What kinds does the field really need? For this article,
 I will focus on assessing needs for wet lab practices. However, I will touch on
 the needs of data reporting in a future article.
 
-### DNA standards
+### DNA standardization
 
 In order to treat sequences of DNA as "mechanical" parts, we must formalize how
 we describe and use them in the laboratory. A prominent example of this is the
@@ -53,10 +53,9 @@ the standard allowed for _idempotent_ transformation of DNA, such that parts may
 be stitched together without losing their function.
 
 In the years following the BioBrick standard, many other standards have been
-proposed. One of these is the
-[MoClo standard](https://www.addgene.org/cloning/moclo/) which itself is built
-on the Golden Gate Cloning standard. This is the method which my iGEM teams used
-in 2022 and 2023.
+proposed. One of these is [MoClo](https://www.addgene.org/cloning/moclo/); it is
+built upon Golden Gate Cloning. This is the method which my iGEM teams used in
+2022 and 2023. More on this later.
 
 These processes are very useful. However, they are quite complex to use, as all
 source DNA must be "domesticated" to fit the standard. This becomes a particular
@@ -77,7 +76,36 @@ domesticated in multiple different ways to allow for a _truly_ modular approach.
 > your chassis without any modification. This is the dream of many synthetic
 > biologists, and it is a dream which is not yet realized.
 
-### Chassis engineering techniques
+=t=WRITE A PART ABOUT DNA BEING REPORTED WEIRDLY. NOT IN FULL CONTIGUOUS SEQs
+AND NOTHING DOMESTICATED== As of writing this, DNA has been...
+
+#### Plasmid assembly abstractions
+
+To addition to MoClo, plasmid collections such as pJUMP and pSEVA provide their
+own set of restriction enzyme protocols and asymmetric overhangs which make it
+very easy to plug-and-play once genes are domesticated. =t=ADD LINKS==
+
+The interesting thing about assembly abstractions is that, while much research
+has gone into the efficiency/reliability of four-base overhang combinations and
+enzyme choice, I find that their strength lies in their intrinsic genetic parts.
+Plasmids with better or a broader range of ORIs, antibiotic resistances, and
+even screening reporters will be chosen over more restrictive models.
+
+Here are a few points I would like to share about assembly abstractions.
+
+-   Blue/white screening shouldn't be the status quo anymore. We have far better
+    ways to screen using small chromoproteins and constitutive promoters. Why do
+    we still require using IPTG and X-Gal on every plate?
+-   Modularity is great. We are already assembling plasmids; assemble some more!
+    Breaking down vectors into parts (ORI, AbR, screening reporter, etc.) gives
+    more freedom to those working with unorthodox chassis.
+-   Along the lines of the previous, we need to start working on making plasmids
+    for non-model organisms. Modularity would help with that -- but what about
+    using learning from functional metagenomics to produce untargeted promoter
+    libraries? Sure, it's not hard-hitting research; but it is what we need to
+    unlock the potential of other organisms.
+
+### Chassis engineering
 
 Chassis engineering is a field which is still in its infancy. However, it is
 becoming increasingly important as we move towards more complex systems.
@@ -92,7 +120,15 @@ to say that it's truly orthogonal. However, we can engineer chassis to withstand
 diversion of its carbon flux, or even adapt to it -- as though it would give its
 own metabolites for the cause of humans. Perhaps: biorouting protocols?
 
-In terms of standardization of chassis engineering, ==there is no precedent==.
-For now\...
+In terms of **standardizing** chassis engineering, _there is no precedent_. For
+now\...
+
+A common method for engineering cell lines is by some mechanism of inserting DNA
+into the genome by allowing it to recombinate with plasmid DNA. For example,
+through phage engineering or using large flanking regions that are homologous to
+the target locus. An example of the latter is commonly found when engineering
+_Agrobacteria tumefaciens_ to recombine with plants as a gene delivery vector.
+In order for this to occur, the target DNA has to be incorporated to the crown
+gall region of the _Agrobacterium_ genome. =t=ADD SOURCE HERE==
 
 ### Parts documentation

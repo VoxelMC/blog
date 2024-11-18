@@ -21,6 +21,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
 import { remarkReadingTime } from './remark/reading-time.mjs';
 import remarkFlexibleMarkers from 'remark-flexible-markers';
+import remarkSuperSub from './remark/supersub.mjs';
 // import remarkMark from 'remark-mark-plus';
 // const remarkMarkD = await import('remark-mark-plus');
 // const remarkMark = remarkMarkD.default;
@@ -61,6 +62,7 @@ export default defineConfig({
     markdown: {
         smartypants: false,
         remarkPlugins: [
+            remarkSuperSub,
             [
                 smartypants,
                 {
@@ -76,7 +78,14 @@ export default defineConfig({
             remarkCallout,
             emoji,
             remarkReadingTime,
-            remarkFlexibleMarkers,
+            [
+                remarkFlexibleMarkers,
+                {
+                    dictionary: {
+                        '!': 'todo',
+                    },
+                },
+            ],
         ],
         rehypePlugins: [
             rehypeHeadingIds,

@@ -1,6 +1,10 @@
 mark {
     @apply bg-accentColor px-1 py-0.5 text-sm font-bold text-darkModeText;
     box-decoration-break: clone;
+
+    &.flexible-marker-teal {
+        @apply bg-red-300 text-black;
+    }
 }
 
 code {
