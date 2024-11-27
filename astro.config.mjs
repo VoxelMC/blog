@@ -3,13 +3,13 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
 
-// Integrations
+// Other Integrations
 import expressiveCode from 'astro-expressive-code';
 import metaTags from 'astro-meta-tags';
 import satori from 'satori-astro';
 import keystatic from '@keystatic/astro';
-import react from '@astrojs/react';
 
 // Remark Rehype
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
@@ -22,10 +22,6 @@ import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
 import { remarkReadingTime } from './remark/reading-time.mjs';
 import remarkFlexibleMarkers from 'remark-flexible-markers';
 import remarkSuperSub from './remark/supersub.mjs';
-// import remarkMark from 'remark-mark-plus';
-// const remarkMarkD = await import('remark-mark-plus');
-// const remarkMark = remarkMarkD.default;
-// console.log(remarkMark);
 
 import vercel from '@astrojs/vercel/serverless';
 

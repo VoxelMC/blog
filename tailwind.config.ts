@@ -15,8 +15,8 @@ export default {
             },
             colors: {
                 // lightModeBg: '#E6E6E6', // Default
-                lightModeBg: '#FAF5FF', // Lavender Whip
                 // lightModeBg: '#FEF5EA', // Creame
+                lightModeBg: '#FAF5FF', // Lavender Whip
                 darkModeBg: '#1A1A1A',
                 accentColor: '#A682FF',
                 accentColorLight: '#daccff',
