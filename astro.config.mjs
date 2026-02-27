@@ -8,7 +8,7 @@ import react from '@astrojs/react';
 // Other Integrations
 import expressiveCode from 'astro-expressive-code';
 import metaTags from 'astro-meta-tags';
-import satori from 'satori-astro';
+// import satori from 'satori-astro';
 import keystatic from '@keystatic/astro';
 
 // Remark Rehype
@@ -48,7 +48,7 @@ const astroExpressiveCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
     // output: 'static',
-    output: 'hybrid',
+    output: 'static',
     adapter: vercel({
         webAnalytics: {
             enabled: true,
@@ -105,7 +105,7 @@ export default defineConfig({
         mdx(),
         metaTags(),
         sitemap(),
-        satori(),
+        // satori(),
         keystatic(),
         react(),
     ],

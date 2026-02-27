@@ -1,9 +1,9 @@
 ---
 import config from '../config';
-import type { PostFrontmatter } from '../content/config';
+import type { NoteFrontmatter, PostFrontmatter } from '../content/config';
 
 export interface Props {
-	frontmatter?: PostFrontmatter;
+	frontmatter?: PostFrontmatter | NoteFrontmatter;
 	title?: string;
 	slug?: string;
 	isPost?: boolean;
@@ -24,7 +24,7 @@ const siteTitle =
 	: title ? title + ' | ' + config.title
 	: config.title;
 
-const siteDescription = frontmatter?.description ?? config.description;
+const siteDescription = (frontmatter as PostFrontmatter)?.description ?? config.description;
 ---
 
 <!-- Sitemap -->
@@ -62,8 +62,8 @@ const siteDescription = frontmatter?.description ?? config.description;
 <meta name="author" content={config.author} />
 
 {
-	frontmatter?.pubDate && (
-		<meta property="article:published_time" content={frontmatter.pubDate} />
+	(frontmatter as PostFrontmatter)?.pubDate && (
+		<meta property="article:published_time" content={(frontmatter as PostFrontmatter).pubDate} />
 	)
 }
 

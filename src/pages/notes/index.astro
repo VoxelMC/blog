@@ -1,0 +1,45 @@
+---
+import Base from '@layouts/Base.astro';
+import PostPreview from '@components/PostPreview.astro';
+import { getCollection } from 'astro:content';
+import MonthDivider from '@components/MonthDivider.astro';
+import type { CollectionEntry } from 'astro:content';
+import NotesPreview from '@components/NotesPreview.astro';
+
+type Post = CollectionEntry<'notes'>;
+
+const allPosts: Post[] = (await getCollection('notes')) as Post[];
+allPosts.sort(
+	(a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+);
+---
+
+<Base title="Home">
+	{
+		allPosts.map(async (post, i, array) => {
+			const { remarkPluginFrontmatter } = await post.render();
+			let shouldAddDivide;
+			if (!!array[i - 1]) {
+				const currentDate = new Date(post.data.date).getMonth();
+				const nextDate = new Date(array[i - 1].data.date).getMonth();
+				shouldAddDivide = currentDate !== nextDate;
+			} else {
+				shouldAddDivide = true;
+			}
+
+			return (
+				<>
+					{shouldAddDivide && (
+						<MonthDivider date={post.data.date as string} />
+					)}
+					<NotesPreview
+						url={'/notes/' + post.slug}
+						title={post.data.title}
+						date={post.data.date}
+						readingTime={remarkPluginFrontmatter.readingTime}
+					/>
+				</>
+			);
+		})
+	}
+</Base>

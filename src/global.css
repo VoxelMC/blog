@@ -93,6 +93,10 @@ a:has(.anchor-link) {
     @apply opacity-100;
 }
 
+.prose li ol:has(li) {
+    @apply mt-0;
+}
+
 /* @media (prefers-reduced-motion: reduce) { */
 /* 	:global(html) { */
 /* 		scroll-behavior: auto; */
