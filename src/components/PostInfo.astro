@@ -5,67 +5,67 @@ const parsedDate = new Date(date);
 // const month = parsedDate.toLocaleString('default', { month: 'long' });
 // const year = parsedDate.getFullYear();
 const prettyDescription =
-    description.endsWith('.') ? description : description + '.';
+	description.endsWith('.') ? description : description + '.';
 
 const dev = import.meta.env.DEV;
 ---
 
 <div class="mb-1 handheld:w-full handheld:max-w-full">
-    <h2
-        transition:name={`${title}`
-            .toLowerCase()
-            .replaceAll(/ |[^a-zA-Z]/g, '') + '-title'}
-        class="my-0 inline w-max text-4xl"
-    >
-        {title}
-        {
-            dev && (
-                <a
-                    target="_blank"
-                    href={`/keystatic/collection/posts/item/${slug}`}
-                    class="text-xs underline"
-                >
-                    edit
-                </a>
-            )
-        }
-    </h2>
-    <div
-        transition:name={`${title}`
-            .toLowerCase()
-            .replaceAll(/ |[^a-zA-Z]/g, '') + '-description'}
-        class="mt-2 text-wrap italic"
-    >
-        {prettyDescription}
-    </div>
-    <div
-        class="flex items-center justify-between w500:flex-col w500:items-start"
-    >
-        <div class="flex items-center py-4">
-            <i
-                class="ri-calendar-fill ri-lg mr-1.5"
-                transition:name=`${title}-calendar`></i>
-            <p
-                class="leadin-5 my-0 text-sm tracking-wide"
-                transition:name={`${title}`
-                    .toLowerCase()
-                    .replaceAll(/ |[^a-zA-Z]/g, '') + '-date'}
-            >
-                {parsedDate.toDateString().replace(' ', ', ')}
-            </p>
-            <i class="ri-timer-line ri-lg mx-1.5 ml-2"></i>
-            <p class="leadin-5 my-0 text-sm tracking-wide">
-                {Math.round(readingTime * 10) / 10} mins
-            </p>
-        </div>
-        <div class="flex items-center">
-            {
-                tags.map((tag: string) => (
-                    <a class="ml-2 text-sm first:ml-0" href={`/tags/${tag}`}>
-                        #{tag}
-                    </a>
-                ))
-            }
-        </div>
-    </div>
+	<h2
+		transition:name={`${title}`
+			.toLowerCase()
+			.replaceAll(/ |[^a-zA-Z]/g, '') + '-title'}
+		class="my-0 inline w-max text-4xl"
+	>
+		{title}
+		{
+			dev && (
+				<a
+					target="_blank"
+					href={`/keystatic/collection/posts/item/${slug}`}
+					class="text-xs underline"
+				>
+					edit
+				</a>
+			)
+		}
+	</h2>
+	<div
+		transition:name={`${title}`
+			.toLowerCase()
+			.replaceAll(/ |[^a-zA-Z]/g, '') + '-description'}
+		class="mt-2 text-wrap italic"
+	>
+		{prettyDescription}
+	</div>
+	<div
+		class="flex items-center justify-between w500:flex-col w500:items-start"
+	>
+		<div class="flex items-center py-4">
+			<i
+				class="ri-calendar-fill ri-lg mr-1.5"
+				transition:name=`${title}-calendar`></i>
+			<p
+				class="leadin-5 my-0 text-sm tracking-wide"
+				transition:name={`${title}`
+					.toLowerCase()
+					.replaceAll(/ |[^a-zA-Z]/g, '') + '-date'}
+			>
+				{parsedDate.toDateString().replace(' ', ', ')}
+			</p>
+			<i class="ri-timer-line ri-lg mx-1.5 ml-2"></i>
+			<p class="leadin-5 my-0 text-sm tracking-wide">
+				{Math.round(readingTime * 10) / 10} mins
+			</p>
+		</div>
+		<div class="flex items-center">
+			{
+				tags.map((tag: string) => (
+					<a class="ml-2 text-sm first:ml-0" href={`/tags/${tag}`}>
+						#{tag}
+					</a>
+				))
+			}
+		</div>
+	</div>
 </div>
