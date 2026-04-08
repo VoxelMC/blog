@@ -31,12 +31,7 @@ const year = parsedDate.getFullYear();
 				data-astro-history="push"
 				href={url}
 			>
-				<h2
-					transition:name={`${title}`
-						.toLowerCase()
-						.replaceAll(/ |[^a-zA-Z]/g, '') + '-title'}
-					class="text-xl font-medium w500:text-lg"
-				>
+				<h2 class="text-xl font-medium w500:text-lg">
 					{title}
 				</h2>
 				<span
@@ -46,9 +41,6 @@ const year = parsedDate.getFullYear();
 		</div>
 		<p
 			class="mb3 mt-1 text-sm leading-relaxed tracking-wide w500:text-sm w500:leading-[2.2]"
-			transition:name={`${title}`
-				.toLowerCase()
-				.replaceAll(/ |[^a-zA-Z]/g, '') + '-description'}
 		>
 			<!-- <i class="ri-quill-pen-fill ri-lg"></i> {prettyDescription} -->
 		</p>
@@ -56,12 +48,7 @@ const year = parsedDate.getFullYear();
 			<div
 				class="flex flex-wrap text-wrap text-sm leading-5 tracking-wide handheld:max-w-full w500:text-xs"
 			>
-				<i
-					class="ri-calendar-fill ri-lg mr-1.5"
-					transition:name=`${title}-calendar`></i><span
-					transition:name={`${title}`
-						.toLowerCase()
-						.replaceAll(/ |[^a-zA-Z]/g, '') + '-date'}
+				<i class="ri-calendar-fill ri-lg mr-1.5"></i><span
 					>{parsedDate.toDateString().replace(' ', ', ')}</span
 				>
 				<span class="mr-1.5"

@@ -44,5 +44,28 @@ import Base from '@baselayout';
 				><i class="ri-arrow-right-line ri-lg ml-1 text-accentColor"></i>
 			</li>
 		</ol>
+		<h2 class="mb-2 text-accentColor">
+			Other trev<span class="text-lightModeText dark:text-darkModeText"
+				>fox</span
+			> Websites
+		</h2>
+		<ol class="text-white">
+			{
+				['labtools', 'collabowrite'].map(site => (
+					<li>
+						<>
+							<a
+								class="underline transition-colors hover:!text-accentColor dark:text-darkModeText w500:text-sm"
+								href={`https://${site}.trevfox.dev`}
+								target="_blank"
+							>
+								{site}
+							</a>
+							<i class="ri-arrow-right-line ri-lg ml-1 text-accentColor" />
+						</>
+					</li>
+				))
+			}
+		</ol>
 	</div>
 </Base>

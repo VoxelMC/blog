@@ -15,6 +15,9 @@ allPosts.sort(
 ---
 
 <Base title="Home">
+	<h1 class="mb-3 text-3xl font-medium text-accentColor w500:text-2xl">
+		Class Notes
+	</h1>
 	{
 		allPosts.map(async (post, i, array) => {
 			const { remarkPluginFrontmatter } = await post.render();
