@@ -1,6 +1,7 @@
 {
     "name": "minimal",
     "type": "module",
+    "packageManager": "pnpm@12",
     "version": "14.0.0",
     "scripts": {
         "dev": "astro dev --host",
